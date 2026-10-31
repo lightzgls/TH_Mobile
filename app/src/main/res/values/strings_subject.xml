@@ -1,0 +1,8 @@
+<resources>
+    <string name="subject_list_title">Danh sách môn học</string>
+    <string name="subject_list_placeholder">Phụ trách: Sáng. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+    <string name="subject_form_title">Thêm và sửa môn học</string>
+    <string name="subject_form_placeholder">Phụ trách: Sáng. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+    <string name="subject_picker_title">Chọn môn học</string>
+    <string name="subject_picker_placeholder">Phụ trách: Sáng. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+</resources>

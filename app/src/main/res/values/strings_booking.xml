@@ -1,0 +1,4 @@
+<resources>
+    <string name="booking_form_title">Đặt và sửa lịch học</string>
+    <string name="booking_form_placeholder">Phụ trách: Thu. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+</resources>

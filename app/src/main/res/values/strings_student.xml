@@ -1,0 +1,8 @@
+<resources>
+    <string name="student_list_title">Danh sách sinh viên</string>
+    <string name="student_list_placeholder">Phụ trách: Quang. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+    <string name="student_form_title">Thêm và sửa sinh viên</string>
+    <string name="student_form_placeholder">Phụ trách: Quang. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+    <string name="student_detail_title">Chi tiết sinh viên</string>
+    <string name="student_detail_placeholder">Phụ trách: Quang. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+</resources>

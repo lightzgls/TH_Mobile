@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/common_root" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="24dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/student_list_title" android:textSize="24sp" android:textStyle="bold"
+            android:paddingBottom="16dp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/student_list_placeholder" android:textSize="16sp" android:paddingBottom="24dp" />
+        <Button android:id="@+id/student_list_back" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/common_back" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="auth_login_title">Đăng nhập</string>
+    <string name="auth_login_placeholder">Phụ trách: An. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+</resources>

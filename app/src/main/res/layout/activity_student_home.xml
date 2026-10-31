@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/common_root" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="24dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/student_home_title" android:textSize="24sp" android:textStyle="bold"
+            android:paddingBottom="16dp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/common_preview_notice" android:textSize="16sp" android:paddingBottom="24dp" />
+        <Button android:id="@+id/student_open_schedules" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/student_schedule_list" />
+        <Button android:id="@+id/student_open_booking" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/student_new_booking" />
+        <Button android:id="@+id/student_open_agenda" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/student_day_week" />
+        <Button android:id="@+id/student_open_month" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/student_month" />
+        <Button android:id="@+id/student_home_back" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/common_back" />
+
+    </LinearLayout>
+</ScrollView>

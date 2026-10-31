@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Study Schedule</string>
+    <string name="main_title">Ứng dụng quản lý và đặt lịch học</string>
+    <string name="main_description">Khung dự án chung cho nhóm Sáng, An, Thu, Quang, Huy.</string>
+    <string name="main_start">Mở màn hình đăng nhập</string>
+    <string name="main_admin_preview">Xem bố cục Admin — debug</string>
+    <string name="main_student_preview">Xem bố cục Student — debug</string>
+    <string name="main_database_loading">Đang chuẩn bị dữ liệu demo…</string>
+    <string name="main_database_ready">Khung dự án đã sẵn sàng. Các chức năng được triển khai theo kế hoạch.</string>
+    <string name="main_database_error">Không thể chuẩn bị dữ liệu demo. Kiểm tra Logcat.</string>
+    <string name="common_back">Quay lại</string>
+    <string name="admin_home_title">Trang Admin</string>
+    <string name="student_home_title">Trang Student</string>
+    <string name="common_preview_notice">Đây là màn hình rỗng của khung chung, chưa xác thực và chưa có chức năng.</string>
+    <string name="admin_student_list">Sinh viên</string>
+    <string name="admin_subject_list">Môn học</string>
+    <string name="student_schedule_list">Lịch của tôi</string>
+    <string name="student_new_booking">Đặt lịch mới</string>
+    <string name="student_day_week">Lịch ngày và tuần</string>
+    <string name="student_month">Lịch tháng</string>
+</resources>
