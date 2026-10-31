@@ -1,16 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/common_root" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/common_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fillViewport="true">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="vertical" android:padding="24dp">
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="@string/schedule_detail_title" android:textSize="24sp" android:textStyle="bold"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Top Navigation & Title -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/schedule_detail_title"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#212121" />
+
+            <Button
+                android:id="@+id/schedule_detail_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/common_back" />
+        </LinearLayout>
+
+        <!-- Progress Indicator -->
+        <ProgressBar
+            android:id="@+id/schedule_detail_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
             android:paddingBottom="16dp" />
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="@string/schedule_detail_placeholder" android:textSize="16sp" android:paddingBottom="24dp" />
-        <Button android:id="@+id/schedule_detail_back" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:text="@string/common_back" />
+
+        <!-- Status / Alert Message Banner -->
+        <TextView
+            android:id="@+id/schedule_detail_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:textColor="#B71C1C"
+            android:background="#FFEBEE"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone" />
+
+        <!-- Detail Card Container -->
+        <LinearLayout
+            android:id="@+id/schedule_detail_card_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#ECEFF1"
+            android:layout_marginBottom="24dp">
+
+            <!-- Subject Row -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/schedule_detail_subject_label"
+                android:textSize="13sp"
+                android:textColor="#546E7A" />
+
+            <TextView
+                android:id="@+id/schedule_detail_subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#1A237E"
+                android:paddingBottom="12dp" />
+
+            <!-- Date Row -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/schedule_detail_date_label"
+                android:textSize="13sp"
+                android:textColor="#546E7A" />
+
+            <TextView
+                android:id="@+id/schedule_detail_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#263238"
+                android:paddingBottom="12dp" />
+
+            <!-- Time Row -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/schedule_detail_time_label"
+                android:textSize="13sp"
+                android:textColor="#546E7A" />
+
+            <TextView
+                android:id="@+id/schedule_detail_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#263238"
+                android:paddingBottom="12dp" />
+
+            <!-- Location Row -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/schedule_detail_location_label"
+                android:textSize="13sp"
+                android:textColor="#546E7A" />
+
+            <TextView
+                android:id="@+id/schedule_detail_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#263238"
+                android:paddingBottom="12dp" />
+
+            <!-- Status Row -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/schedule_detail_status_label"
+                android:textSize="13sp"
+                android:textColor="#546E7A" />
+
+            <TextView
+                android:id="@+id/schedule_detail_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Actions Container -->
+        <LinearLayout
+            android:id="@+id/schedule_detail_actions_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/schedule_detail_edit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/schedule_detail_edit"
+                android:layout_marginBottom="10dp" />
+
+            <Button
+                android:id="@+id/schedule_detail_confirm_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/schedule_detail_confirm"
+                android:layout_marginBottom="10dp" />
+
+            <Button
+                android:id="@+id/schedule_detail_cancel_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/schedule_detail_cancel"
+                android:layout_marginBottom="10dp" />
+
+            <Button
+                android:id="@+id/schedule_detail_delete_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/schedule_detail_delete" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

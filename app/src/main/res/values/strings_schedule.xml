@@ -15,4 +15,25 @@
     <string name="schedule_list_loading">Đang tải danh sách lịch học...</string>
     <string name="schedule_detail_title">Chi tiết lịch học</string>
     <string name="schedule_detail_placeholder">Phụ trách: Huy. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+    <string name="schedule_detail_edit">Chỉnh sửa lịch</string>
+    <string name="schedule_detail_confirm">Xác nhận lịch học</string>
+    <string name="schedule_detail_cancel">Hủy lịch học</string>
+    <string name="schedule_detail_delete">Xóa lịch học</string>
+    <string name="schedule_detail_subject_label">Môn học:</string>
+    <string name="schedule_detail_date_label">Ngày học:</string>
+    <string name="schedule_detail_time_label">Khung giờ:</string>
+    <string name="schedule_detail_location_label">Địa điểm:</string>
+    <string name="schedule_detail_status_label">Trạng thái:</string>
+    <string name="schedule_detail_not_found">Lịch học không tồn tại hoặc bạn không có quyền truy cập.</string>
+    <string name="schedule_detail_past_msg">Lịch học này đã bắt đầu hoặc đã qua thời gian học. Bạn không thể chỉnh sửa hoặc thay đổi trạng thái.</string>
+    <string name="schedule_detail_cancelled_msg">Lịch học này đã bị hủy. Bạn chỉ có thể xem hoặc xóa.</string>
+    <string name="schedule_detail_confirm_success">Đã xác nhận lịch học thành công.</string>
+    <string name="schedule_detail_cancel_success">Đã hủy lịch học thành công.</string>
+    <string name="schedule_detail_delete_success">Đã xóa lịch học thành công.</string>
+    <string name="schedule_detail_cancel_dialog_title">Xác nhận hủy lịch</string>
+    <string name="schedule_detail_cancel_dialog_msg">Bạn có chắc chắn muốn hủy lịch học này? Hành động này không thể hoàn tác.</string>
+    <string name="schedule_detail_delete_dialog_title">Xác nhận xóa lịch</string>
+    <string name="schedule_detail_delete_dialog_msg">Bạn có chắc chắn muốn xóa vĩnh viễn lịch học này khỏi hệ thống?</string>
+    <string name="schedule_common_confirm">Đồng ý</string>
+    <string name="schedule_common_cancel">Bỏ qua</string>
 </resources>
