@@ -1,3 +1,9 @@
 <resources>
-
+    <string name="notify_channel_name">Nhắc lịch học</string>
+    <string name="notify_reminder_title">Bạn sắp có buổi học</string>
+    <string name="notify_reminder_body">%1$s — %2$s lúc %3$s. Địa điểm: %4$s.</string>
+    <string name="notify_change_title">Lịch học đã thay đổi</string>
+    <string name="notify_change_body">Lịch học của bạn vừa được cập nhật hoặc xóa. Mở ứng dụng để kiểm tra.</string>
+    <string name="notify_permission_button">Bật thông báo nhắc lịch</string>
+    <string name="notify_permission_denied">Thông báo đang tắt. Bạn vẫn có thể quản lý và đặt lịch học.</string>
 </resources>
