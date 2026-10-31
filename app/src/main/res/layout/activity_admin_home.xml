@@ -8,13 +8,13 @@
             android:text="@string/admin_home_title" android:textSize="24sp" android:textStyle="bold"
             android:paddingBottom="16dp" />
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="@string/common_preview_notice" android:textSize="16sp" android:paddingBottom="24dp" />
+            android:text="@string/auth_admin_welcome" android:textSize="16sp" android:paddingBottom="24dp" />
         <Button android:id="@+id/admin_open_students" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:text="@string/admin_student_list" />
         <Button android:id="@+id/admin_open_subjects" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:text="@string/admin_subject_list" />
         <Button android:id="@+id/admin_home_back" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:text="@string/common_back" />
+            android:layout_height="wrap_content" android:text="@string/auth_logout" />
 
     </LinearLayout>
 </ScrollView>

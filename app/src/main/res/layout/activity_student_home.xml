@@ -8,7 +8,7 @@
             android:text="@string/student_home_title" android:textSize="24sp" android:textStyle="bold"
             android:paddingBottom="16dp" />
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="@string/common_preview_notice" android:textSize="16sp" android:paddingBottom="24dp" />
+            android:text="@string/auth_student_welcome" android:textSize="16sp" android:paddingBottom="24dp" />
         <Button android:id="@+id/student_open_schedules" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:text="@string/student_schedule_list" />
         <Button android:id="@+id/student_open_booking" android:layout_width="match_parent"
@@ -18,7 +18,8 @@
         <Button android:id="@+id/student_open_month" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:text="@string/student_month" />
         <Button android:id="@+id/student_home_back" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:text="@string/common_back" />
+            android:layout_height="wrap_content" android:text="@string/auth_logout" />
 
+<Button android:id="@+id/notify_enable" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/notify_permission_button" />
     </LinearLayout>
 </ScrollView>
