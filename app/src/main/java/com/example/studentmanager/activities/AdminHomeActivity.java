@@ -12,6 +12,6 @@ public class AdminHomeActivity extends BaseActivity {
         setPage(R.layout.activity_admin_home);
         findViewById(R.id.admin_open_students).setOnClickListener(view -> startActivity(new Intent(this, StudentListActivity.class)));
         findViewById(R.id.admin_open_subjects).setOnClickListener(view -> startActivity(new Intent(this, SubjectListActivity.class)));
-        findViewById(R.id.admin_home_back).setOnClickListener(view -> finish());
+        findViewById(R.id.admin_home_back).setOnClickListener(view -> logout());
     }
 }
