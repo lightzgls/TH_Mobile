@@ -63,3 +63,11 @@ Nếu có nhiều thiết bị, chọn serial khi chạy ADB trực tiếp:
 Tài khoản: admin / Admin@123; sv01 đến sv30 / Student@123.
 APK: app/build/outputs/apk/debug/app-debug.apk.
 WorkManager có thể chạy trễ do hệ điều hành; không dùng để cam kết nhắc chính xác từng phút.
+
+## Sửa lối mở ứng dụng sau tích hợp
+
+Bản debug trước đó khai báo cả MainActivity và SubjectVisualDemoActivity là launcher. Android Studio dùng Default Activity có thể chọn demo, bỏ qua luồng đăng nhập dù code auth vẫn còn.
+Đã bỏ MAIN/LAUNCHER khỏi demo; MainActivity là launcher duy nhất. Demo chỉ mở khi chủ động chọn cấu hình Sang UI Demo.
+README và SAMPLE_DATA ưu tiên cấu hình app và tài khoản thật.
+LauncherEntryTest kiểm tra đúng một launcher, mở app chưa có phiên vào LoginActivity, login Admin rồi logout trở lại LoginActivity; khi có phiên hợp lệ phải vào Home đúng vai trò.
+Không thay đổi SharedPreferences, dữ liệu sample hoặc logic tự khôi phục phiên.
