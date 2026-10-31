@@ -1,4 +1,14 @@
 <resources>
     <string name="auth_login_title">Đăng nhập</string>
-    <string name="auth_login_placeholder">Phụ trách: An. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+    <string name="auth_login_hint">Nhập tài khoản được quản trị viên cung cấp. Ứng dụng sẽ ghi nhớ phiên đăng nhập.</string>
+    <string name="auth_username">Tên đăng nhập</string>
+    <string name="auth_password">Mật khẩu</string>
+    <string name="auth_username_required">Vui lòng nhập tên đăng nhập.</string>
+    <string name="auth_password_required">Vui lòng nhập mật khẩu.</string>
+    <string name="auth_loading">Đang kiểm tra tài khoản…</string>
+    <string name="auth_session_error">Phiên đăng nhập không hợp lệ. Vui lòng thử lại.</string>
+    <string name="auth_logout">Đăng xuất</string>
+    <string name="auth_logged_out">Đã đăng xuất.</string>
+    <string name="auth_admin_welcome">Quản lý sinh viên và môn học.</string>
+    <string name="auth_student_welcome">Quản lý lịch học cá nhân của bạn.</string>
 </resources>

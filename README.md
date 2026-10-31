@@ -31,9 +31,9 @@ Bộ mẫu có **1 Admin, 30 Student, 30 môn và 3.670 lịch**, gồm lịch h
 
 ## Trạng thái hiện tại
 
-Đã có cấu hình project, 4 bảng SQLite, khóa ngoại, seed demo, model, chữ ký hàm, Activity và layout riêng. Trang mở đầu có nút xem màn hình rỗng Admin và Student **chỉ trong bản debug**, không tạo phiên hay cấp quyền.
+Đã có cấu hình project, 4 bảng SQLite, khóa ngoại, seed demo, model, chữ ký hàm, Activity và layout riêng. Phần An đã có đăng nhập, phân quyền, lưu phiên và thông báo. Khi mở ứng dụng, phiên được kiểm tra để chuyển vào đúng màn hình.
 
-**Phần Sáng đã có CRUD môn, chọn môn và lịch tháng**, kèm demo visual trong `src/debug` dùng database riêng. Luồng chính còn chờ ghép đăng nhập của An, truy vấn lịch của Huy và form đặt/sửa của Thu; phần chưa triển khai vẫn giữ stub và từ chối quyền. Các nhánh cá nhân khác cần được kiểm tra, review và ghép riêng. Khung chung và việc điều phối không tính đóng góp cá nhân.
+**Nhánh feature/sang-subject-month đã ghép phần Sáng với repository của Huy và auth/thông báo của An.** Lịch tháng lấy dữ liệu thật theo phiên Student; CRUD môn dùng quyền Admin. Huy mới giao repository; màn hình danh sách/chi tiết/ngày-tuần vẫn là khung, form đặt/sửa của Thu chưa ghép. Phần tích hợp này chỉ ở nhánh Sáng; main hiện chỉ nhận bộ sample lớn. Hướng dẫn phần An: [docs/AN_GUIDE.md](docs/AN_GUIDE.md).
 
 Xem [kế hoạch đầy đủ](docs/IMPLEMENTATION_PLAN.md) và [bản Word](docs/Ke_hoach_nhom_5_nguoi.docx).
 
@@ -138,7 +138,7 @@ DBHelper chỉ seed lần đầu: 1 Admin, 30 Student, 30 môn và 3.670 lịch;
 | sv01 | Student@123 | STUDENT |
 | sv02 | Student@123 | STUDENT |
 
-Đây là tài khoản giả để học và demo. **Chưa login được cho tới khi An triển khai xong.** Seed chứa password băm theo format `pbkdf2_sha256$600000$saltHex$hashHex`, PBKDF2WithHmacSHA256, UTF-8, salt 16 byte và key 256 bit. An triển khai hash/verify tương thích; tài khoản mới dùng salt ngẫu nhiên. Không lưu password trong SharedPreferences.
+Đây là tài khoản giả để học và demo. **Đã có thể dùng để đăng nhập sau khi cài bản có phần An.** Seed chứa password băm theo format `pbkdf2_sha256$600000$saltHex$hashHex`, PBKDF2WithHmacSHA256, UTF-8, salt 16 byte và key 256 bit. An triển khai hash/verify tương thích; tài khoản mới dùng salt ngẫu nhiên. Không lưu password trong SharedPreferences.
 
 - Xóa Account của Student → Student và lịch liên quan bị xóa theo CASCADE.
 - Môn đã có lịch dùng → chặn xóa bằng RESTRICT.

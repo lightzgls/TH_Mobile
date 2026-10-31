@@ -24,6 +24,7 @@ import java.util.List;
 
 /** Menu thử visual: dùng lại Activity thật, chỉ thay nguồn dữ liệu trong bản debug. */
 public class SubjectVisualDemoActivity extends BaseActivity {
+    @Override protected boolean requiresSession() { return false; }
     private final ActivityResultLauncher<Intent> picker = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result -> {
                 TextView output = findViewById(R.id.subject_demo_result);
@@ -77,22 +78,26 @@ public class SubjectVisualDemoActivity extends BaseActivity {
 
     // Các lớp dưới chỉ có trong bản debug. Layout và xử lý nhập liệu dùng Activity thật.
     public static class Subjects extends SubjectListActivity {
+        @Override protected boolean requiresSession() { return false; }
         @Override protected SubjectRepository createRepository() { return SubjectDemoData.subjects(this, true); }
         @Override protected AuthGuard createAuthGuard() { return SubjectDemoData.guard(this, true); }
         @Override protected Class<?> formActivity() { return Editor.class; }
     }
 
     public static class Editor extends SubjectFormActivity {
+        @Override protected boolean requiresSession() { return false; }
         @Override protected SubjectRepository createRepository() { return SubjectDemoData.subjects(this, true); }
         @Override protected AuthGuard createAuthGuard() { return SubjectDemoData.guard(this, true); }
     }
 
     public static class Picker extends SubjectPickerActivity {
+        @Override protected boolean requiresSession() { return false; }
         @Override protected SubjectRepository createRepository() { return SubjectDemoData.subjects(this, false); }
         @Override protected AuthGuard createAuthGuard() { return SubjectDemoData.guard(this, false); }
     }
 
     public static class Month extends MonthCalendarActivity {
+        @Override protected boolean requiresSession() { return false; }
         @Override protected Session studentSession() { return SubjectDemoData.guard(this, false).requireStudent(); }
         @Override protected List<ScheduleItem> loadSchedules(ScheduleFilter filter) {
             return SubjectDemoData.schedules(this, filter);
