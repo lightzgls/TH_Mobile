@@ -24,10 +24,11 @@ Constructor riêng và `notifySaved` của repository hỗ trợ test SQLite in-
 ## Điểm nối đã ghép và còn chờ
 
 - Đã fetch remote và merge code Sáng tại commit `e352dac` bằng merge commit `1c50317`: có repository môn, CRUD môn, bộ chọn môn trả `EXTRA_SUBJECT_ID` và lịch tháng.
-- `AuthGuard` của An vẫn trả null: form yêu cầu đăng nhập rồi đóng, repository từ chối lưu. Cần ghép auth trước khi demo bằng tài khoản thật.
+- Đã merge nhánh An tại `8193a84` bằng commit `1f2ef66`: đăng nhập, phiên, AuthGuard và thông báo đã nối với booking.
+- Sửa kiểm tra màn hình dùng chung: SubjectPickerActivity kế thừa SubjectListActivity nhưng thuộc Student. Kiểm tra picker trước nhóm màn hình Admin để Student chọn môn được.
 - `ScheduleRepository.getMine` của Huy vẫn trả null: form sửa đã gọi đúng API; cần ghép truy vấn thật để tải lịch cũ.
-- `NotificationHelper` của An vẫn là khung: phần Thu đã gọi sau commit, cần ghép xử lý thông báo thật.
-- Không đổi schema, model, chữ ký hàm chung, Manifest hoặc dependency.
+- Đã kiểm tra lưu thành công tạo work nhắc lịch thật qua NotificationHelper và WorkManager. Chưa nghiệm thu thời điểm hiển thị nhắc hoặc toàn bộ thao tác sửa/hủy/xóa khi chưa có phần Huy.
+- Không đổi schema, model, chữ ký repository, Manifest hoặc dependency. BaseActivity có sửa nhỏ ở phân quyền picker khi tích hợp.
 
 ## Kiểm thử
 
@@ -45,6 +46,14 @@ Lệnh chuẩn tại thư mục gốc:
 - Test SQLite dùng database in-memory. Emulator dùng bản sao dữ liệu riêng trong `app/build`, không sửa dữ liệu AVD gốc.
 - Task Gradle `connectedDebugAndroidTest` chờ mà chưa cài APK trong môi trường này; đã cài hai APK vừa build và chạy cùng AndroidJUnitRunner trực tiếp qua ADB, kết quả `OK (27 tests)`. Log: `app/build/thu-instrumentation-results.txt`.
 
+### Sau khi ghép An
+
+- Build app và APK test đạt; 21 unit test đạt; lint có 0 lỗi, 6 cảnh báo ở lần kiểm tra.
+- Cả 36 test instrumentation đạt trên emulator riêng, gồm 3 test luồng mới An–Sáng–Thu. Log: `app/build/thu-auth-integration-results.txt`.
+- BookingFlowTest dùng màn hình và tài khoản thật: đăng nhập từ LoginActivity, mở form từ Student Home, nhận kết quả chọn môn, chọn giờ, chặn lịch trùng, giữ dữ liệu lỗi, lưu sát giờ và kiểm tra WorkManager đã lên nhắc. Có thêm test khôi phục form khi tạo lại Activity và chặn Admin mở form Student.
+- Cập nhật SubjectScreenTest theo phân quyền đã ghép: Student vào picker, Admin vào form môn; chưa đăng nhập được chuyển về login.
+- File cục bộ `gradle/gradle-daemon-jvm.properties` xuất hiện trong lúc làm việc và yêu cầu JDK 25 chưa có sẵn. Không sửa file này. Đã build bản sao mã nguồn/cấu hình trong `app/build/thu-integration-check` bằng JDK 24 + Gradle 9.5.0; Java source vẫn là 17. APK kiểm tra nằm trong `app/build/thu-integration-check/app/build/outputs/apk/debug/`.
+
 Lệnh chạy trực tiếp sau khi build hai APK (chọn đúng serial emulator trên máy):
 
 ```powershell
@@ -60,7 +69,9 @@ adb -s emulator-5580 shell am instrument -w com.example.studentmanager.test/andr
 - `b04f818`: form đặt/sửa và resource.
 - `1c50317`: ghép chức năng môn học/chọn môn/lịch tháng của Sáng.
 
-## Checklist demo sau khi ghép auth và đọc lịch
+## Checklist thử luồng thật
+
+Đăng nhập `sv01` / `Student@123`, chọn Đặt lịch mới để thử luồng tạo. Các ca mở lịch cũ để sửa cần ghép ScheduleRepository và màn hình của Huy; remote hiện chưa có nhánh Huy ở lần fetch kiểm tra.
 
 1. Student đăng nhập, chọn môn/ngày/giờ/địa điểm, lưu; kiểm tra lịch mới là PENDING.
 2. Đã có 09:00–10:00: thử 09:30–10:30, 08:00–11:00 và 09:00–10:00 đều bị chặn; 10:00–11:00 được phép.
