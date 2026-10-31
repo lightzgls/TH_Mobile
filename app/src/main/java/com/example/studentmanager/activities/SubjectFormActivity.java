@@ -23,10 +23,13 @@ public class SubjectFormActivity extends BaseActivity {
     private boolean populated, saving;
     private int request;
 
+    protected SubjectRepository createRepository() { return new SubjectRepository(this); }
+    protected AuthGuard createAuthGuard() { return new AuthGuard(this); }
+
     @Override protected void onCreate(Bundle state) {
         super.onCreate(state);
         setPage(R.layout.activity_subject_form);
-        repository = new SubjectRepository(this);
+        repository = createRepository();
         subjectId = getIntent().getLongExtra(AppConstants.EXTRA_SUBJECT_ID, -1);
         populated = state != null && state.getBoolean("subject_populated");
         code = findViewById(R.id.subject_form_code);
@@ -45,7 +48,7 @@ public class SubjectFormActivity extends BaseActivity {
         save.setEnabled(false);
         DbExecutor.execute(() -> {
             try {
-                boolean allowed = new AuthGuard(this).requireAdmin();
+                boolean allowed = createAuthGuard().requireAdmin();
                 Subject subject = allowed && subjectId > 0 ? repository.get(subjectId) : null;
                 runOnUiThread(() -> {
                     if (isDestroyed() || isFinishing() || request != ticket) return;
