@@ -28,12 +28,18 @@ import com.example.studentmanager.R;
 import com.example.studentmanager.dal.AuthRepository;
 import com.example.studentmanager.dal.BookingRepository;
 import com.example.studentmanager.dal.DBHelper;
+import com.example.studentmanager.dal.StudentRepository;
+import com.example.studentmanager.models.ActionResult;
 import com.example.studentmanager.models.BookingDraft;
+import com.example.studentmanager.models.StudentDraft;
 import com.example.studentmanager.utils.AppConstants;
+import com.example.studentmanager.utils.AuthGuard;
 import com.example.studentmanager.utils.DbExecutor;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Arrays;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
@@ -66,6 +72,7 @@ public class BookingFlowTest {
     @After public void tearDown() throws Exception {
         // Chi xoa lich do chinh test nay tao, khong reset database ung dung.
         db.delete("StudySchedule", "location IN (?,?)", new String[]{marker, marker + "_existing"});
+        db.delete("Account", "username = ?", new String[]{marker.toLowerCase(Locale.ROOT)});
         new AuthRepository(context).logout();
         awaitTasks();
         instrumentation.runOnMainSync(() -> {
@@ -82,6 +89,14 @@ public class BookingFlowTest {
             assertTrue("Database task timed out", done.await(15, TimeUnit.SECONDS));
             instrumentation.waitForIdleSync();
         }
+    }
+
+    private void awaitClosed(ActivityScenario<?> screen) {
+        long deadline = SystemClock.uptimeMillis() + 5000;
+        while (screen.getState() != Lifecycle.State.DESTROYED && SystemClock.uptimeMillis() < deadline) {
+            SystemClock.sleep(50);
+        }
+        assertEquals(Lifecycle.State.DESTROYED, screen.getState());
     }
 
     private <T extends Activity> T current(Class<T> type) {
@@ -237,7 +252,70 @@ public class BookingFlowTest {
         assertTrue(new AuthRepository(context).login("admin", "Admin@123").ok);
         try (ActivityScenario<BookingFormActivity> screen = ActivityScenario.launch(BookingFormActivity.class)) {
             awaitTasks();
-            assertEquals(Lifecycle.State.DESTROYED, screen.getState());
+            awaitClosed(screen);
         }
+    }
+
+    @Test public void adminCreatesStudentThenNewStudentLogsInAndBooks() throws Exception {
+        AuthRepository auth = new AuthRepository(context);
+        assertTrue(auth.login("admin", "Admin@123").ok);
+        String username = marker.toLowerCase(Locale.ROOT);
+        try (ActivityScenario<StudentFormActivity> screen = ActivityScenario.launch(StudentFormActivity.class)) {
+            awaitTasks();
+            screen.onActivity(activity -> {
+                ((EditText) activity.findViewById(R.id.student_form_code)).setText(marker);
+                ((EditText) activity.findViewById(R.id.student_form_fullname)).setText("Sinh viên kiểm thử");
+                ((EditText) activity.findViewById(R.id.student_form_email)).setText(username + "@example.com");
+                ((EditText) activity.findViewById(R.id.student_form_phone)).setText("0900000003");
+                ((EditText) activity.findViewById(R.id.student_form_username)).setText(username);
+                ((EditText) activity.findViewById(R.id.student_form_password)).setText("Student@123");
+                activity.findViewById(R.id.student_form_save).performClick();
+            });
+            awaitTasks();
+            awaitClosed(screen);
+        }
+        auth.logout();
+        assertTrue(auth.login(username, "Student@123").ok);
+        long studentId = new AuthGuard(context).requireStudent().studentId;
+        BookingDraft draft = new BookingDraft();
+        draft.subjectId = 1;
+        draft.studyDate = date;
+        draft.startTime = "10:00";
+        draft.endTime = "11:00";
+        draft.location = marker;
+        ActionResult saved = new BookingRepository(context).save(-1, draft);
+        assertTrue(saved.message, saved.ok);
+        try (Cursor cursor = db.rawQuery("SELECT studentId FROM StudySchedule WHERE id = ?",
+                new String[]{String.valueOf(saved.id)})) {
+            assertTrue(cursor.moveToFirst());
+            assertEquals(studentId, cursor.getLong(0));
+        }
+        assertTrue(new StudentRepository(context).list("").isEmpty());
+        auth.logout();
+        assertTrue(auth.login("admin", "Admin@123").ok);
+        assertTrue(new StudentRepository(context).delete(studentId).ok);
+        try (Cursor cursor = db.rawQuery("SELECT id FROM StudySchedule WHERE id = ?",
+                new String[]{String.valueOf(saved.id)})) {
+            assertFalse("Deleting student must cascade to the booking", cursor.moveToFirst());
+        }
+    }
+
+    @Test public void createdAccountsUseTheSameLengthLimitsAsLogin() {
+        assertTrue(new AuthRepository(context).login("admin", "Admin@123").ok);
+        StudentDraft draft = new StudentDraft();
+        draft.studentCode = marker;
+        draft.fullname = "Sinh viên kiểm thử";
+        draft.email = "test@example.com";
+        draft.phone = "0900000003";
+        char[] longUsername = new char[101];
+        Arrays.fill(longUsername, 'a');
+        draft.username = new String(longUsername);
+        draft.password = "Student@123";
+        assertEquals(ActionResult.VALIDATION, new StudentRepository(context).create(draft).code);
+        draft.username = marker.toLowerCase(Locale.ROOT);
+        char[] longPassword = new char[257];
+        Arrays.fill(longPassword, 'a');
+        draft.password = new String(longPassword);
+        assertEquals(ActionResult.VALIDATION, new StudentRepository(context).create(draft).code);
     }
 }

@@ -25,6 +25,7 @@ Constructor riêng và `notifySaved` của repository hỗ trợ test SQLite in-
 
 - Đã fetch remote và merge code Sáng tại commit `e352dac` bằng merge commit `1c50317`: có repository môn, CRUD môn, bộ chọn môn trả `EXTRA_SUBJECT_ID` và lịch tháng.
 - Đã merge nhánh An tại `8193a84` bằng commit `1f2ef66`: đăng nhập, phiên, AuthGuard và thông báo đã nối với booking.
+- Đã đưa 8 file chức năng của Quang tại `f6fd687` vào đúng `app/src/main`. Nhánh Quang chứa các file trong thư mục lồng `TH_Mobile-main`; chỉ lấy phần CRUD sinh viên và resource tương ứng, giữ cấu hình build/CI đang dùng.
 - Sửa kiểm tra màn hình dùng chung: SubjectPickerActivity kế thừa SubjectListActivity nhưng thuộc Student. Kiểm tra picker trước nhóm màn hình Admin để Student chọn môn được.
 - `ScheduleRepository.getMine` của Huy vẫn trả null: form sửa đã gọi đúng API; cần ghép truy vấn thật để tải lịch cũ.
 - Đã kiểm tra lưu thành công tạo work nhắc lịch thật qua NotificationHelper và WorkManager. Chưa nghiệm thu thời điểm hiển thị nhắc hoặc toàn bộ thao tác sửa/hủy/xóa khi chưa có phần Huy.
@@ -54,6 +55,13 @@ Lệnh chuẩn tại thư mục gốc:
 - Cập nhật SubjectScreenTest theo phân quyền đã ghép: Student vào picker, Admin vào form môn; chưa đăng nhập được chuyển về login.
 - File cục bộ `gradle/gradle-daemon-jvm.properties` xuất hiện trong lúc làm việc và yêu cầu JDK 25 chưa có sẵn. Không sửa file này. Đã build bản sao mã nguồn/cấu hình trong `app/build/thu-integration-check` bằng JDK 24 + Gradle 9.5.0; Java source vẫn là 17. APK kiểm tra nằm trong `app/build/thu-integration-check/app/build/outputs/apk/debug/`.
 
+### Sau khi nối thêm Quang
+
+- Admin tạo sinh viên bằng form thật; tài khoản mới đăng nhập qua AuthRepository của An, đặt lịch qua BookingRepository của Thu và xóa sinh viên sẽ cascade lịch liên quan.
+- Đồng bộ giới hạn username 100 ký tự và password 256 ký tự với login, tránh tạo tài khoản không đăng nhập được. Kiểm tra quyền ở các màn hình sinh viên đi qua BaseActivity và luồng nền, không truy vấn phiên trên UI thread.
+- 21 unit test và cả 38 test instrumentation đạt. 5 test BookingFlowTest bao gồm tài khoản mới, giới hạn đầu vào, luồng chọn môn/lưu/nhắc, khôi phục form và chặn sai vai trò.
+- Build đạt, lint 0 lỗi và 18 cảnh báo (gồm resource, autofill và cấu hình/dependency). Log bộ test cuối: `app/build/thu-all-integration-results.txt`.
+
 Lệnh chạy trực tiếp sau khi build hai APK (chọn đúng serial emulator trên máy):
 
 ```powershell
@@ -68,6 +76,8 @@ adb -s emulator-5580 shell am instrument -w com.example.studentmanager.test/andr
 - `bcffb7b`: repository, transaction, chống trùng và test SQLite.
 - `b04f818`: form đặt/sửa và resource.
 - `1c50317`: ghép chức năng môn học/chọn môn/lịch tháng của Sáng.
+- `1f2ef66`: ghép đăng nhập và thông báo của An.
+- `47e4c64`: sửa phân quyền picker và kiểm thử luồng thật An–Sáng–Thu.
 
 ## Checklist thử luồng thật
 
