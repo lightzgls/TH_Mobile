@@ -1,0 +1,18 @@
+<resources>
+    <string name="subject_demo_title">Sáng UI Demo</string>
+    <string name="subject_demo_notice">Bấm thử giao diện phần Sáng với dữ liệu riêng. Bạn có thể thêm, sửa, xóa môn ngay. Dữ liệu demo được giữ khi đóng mở ứng dụng.</string>
+    <string name="subject_demo_subjects">1. Quản lý môn — Admin demo</string>
+    <string name="subject_demo_picker">2. Chọn môn — Student demo</string>
+    <string name="subject_demo_month">3. Lịch tháng — Student demo</string>
+    <string name="subject_demo_reset">Tạo lại dữ liệu demo</string>
+    <string name="subject_demo_reset_confirm">Đưa dữ liệu của Sáng UI Demo về ban đầu? Các môn bạn tự thêm trong demo sẽ bị xóa.</string>
+    <string name="subject_demo_reset_done">Đã tạo lại dữ liệu demo.</string>
+    <string name="subject_demo_reset_error">Không thể tạo lại dữ liệu demo.</string>
+    <string name="subject_demo_picker_hint">Môn đã chọn sẽ hiện tại đây.</string>
+    <string name="subject_demo_picked">Đã nhận subjectId = %1$d\n%2$s — %3$s</string>
+    <string name="subject_demo_picker_cancelled">Đã hủy chọn môn.</string>
+    <string name="subject_demo_navigation">Ngày truyền sang màn hình: %1$s\n\nĐây là điểm nối với phần của %2$s. Demo dừng ở đây để bạn kiểm tra ngày đã chọn.</string>
+    <string name="subject_demo_thu">Thu (form đặt lịch)</string>
+    <string name="subject_demo_huy">Huy (lịch ngày/tuần)</string>
+    <string name="subject_demo_tip">Gợi ý: chạm môn để xem/sửa/xóa; GIT101 chưa có lịch nên xóa được. Lịch tháng có hai lịch hôm nay và một lịch ngày mai. Thử tìm chuỗi không tồn tại để xem trạng thái trống.</string>
+</resources>
