@@ -60,13 +60,31 @@ public final class DBHelper extends SQLiteOpenHelper {
                 new Object[]{"DB101", "Cơ sở dữ liệu", "Dữ liệu demo"});
         db.execSQL("INSERT INTO Subject(id,subjectCode,subjectName,description,credits) VALUES(3,?,?,?,2)",
                 new Object[]{"GIT101", "Làm việc nhóm với Git", "Dữ liệu demo"});
-        String tomorrow = LocalDate.now().plusDays(1).toString();
-        db.execSQL("INSERT INTO StudySchedule(studentId,subjectId,studyDate,startTime,endTime,location,status) "
-                        + "VALUES(1,1,?,'09:00','10:00',?,?)",
-                new Object[]{tomorrow, "Phòng A101", DbContract.PENDING});
-        db.execSQL("INSERT INTO StudySchedule(studentId,subjectId,studyDate,startTime,endTime,location,status) "
-                        + "VALUES(2,2,?,'10:00','11:00',?,?)",
-                new Object[]{tomorrow, "Phòng A102", DbContract.CONFIRMED});
+        LocalDate today = LocalDate.now();
+        insertDemoSchedule(db, 1, 1, today.plusDays(1), "09:00", "10:00", "Phòng A101", DbContract.PENDING);
+        insertDemoSchedule(db, 2, 2, today.plusDays(1), "10:00", "11:00", "Phòng A102", DbContract.CONFIRMED);
+        insertDemoSchedule(db, 1, 1, today, "09:00", "10:00", "Phòng A101", DbContract.PENDING);
+        insertDemoSchedule(db, 1, 2, today, "14:00", "15:30", "Thư viện", DbContract.CONFIRMED);
+        insertDemoSchedule(db, 1, 1, today, "16:00", "17:00", "Lịch đã hủy", DbContract.CANCELLED);
+        // Hai sinh viên được có lịch cùng giờ để kiểm tra lọc theo chủ sở hữu.
+        insertDemoSchedule(db, 2, 2, today, "09:00", "10:00", "Phòng B201", DbContract.PENDING);
+        insertDemoSchedule(db, 1, 1, today.minusDays(1), "09:00", "10:00", "Lịch đã qua", DbContract.CONFIRMED);
+        insertDemoSchedule(db, 1, 2, today.plusDays(3), "10:00", "11:00", "Phòng A102", DbContract.PENDING);
+        // Hai lịch hiệu lực sát giờ; lịch hủy giao giờ vẫn được giữ để thử bộ lọc.
+        insertDemoSchedule(db, 1, 1, today.plusDays(7), "14:00", "15:30", "Phòng A101", DbContract.CONFIRMED);
+        insertDemoSchedule(db, 1, 2, today.plusDays(7), "15:30", "16:30", "Thư viện", DbContract.PENDING);
+        insertDemoSchedule(db, 1, 2, today.plusDays(7), "16:00", "17:00", "Lịch đã hủy", DbContract.CANCELLED);
+        insertDemoSchedule(db, 2, 1, today.plusDays(7), "14:00", "15:30", "Phòng B201", DbContract.CONFIRMED);
+        insertDemoSchedule(db, 1, 2, today.withDayOfMonth(1).minusDays(1), "08:00", "09:00", "Tháng trước", DbContract.CONFIRMED);
+        insertDemoSchedule(db, 1, 1, today.withDayOfMonth(1).plusMonths(1), "11:00", "12:00", "Tháng sau", DbContract.PENDING);
+        // GIT101 không có lịch: dùng để kiểm tra xóa môn chưa được sử dụng.
+    }
+
+    private void insertDemoSchedule(SQLiteDatabase db, long studentId, long subjectId,
+                                    LocalDate date, String start, String end, String location, String status) {
+        db.execSQL("INSERT INTO StudySchedule(studentId,subjectId,studyDate,startTime,endTime,location,status)"
+                        + " VALUES(?,?,?,?,?,?,?)",
+                new Object[]{studentId, subjectId, date.toString(), start, end, location, status});
     }
 
     @Override

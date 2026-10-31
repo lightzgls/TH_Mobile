@@ -2,12 +2,10 @@ package com.example.studentmanager.dal;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import com.example.studentmanager.models.ScheduleFilter;
 import com.example.studentmanager.models.ScheduleItem;
 import com.example.studentmanager.models.Session;
 import com.example.studentmanager.utils.AuthGuard;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,16 +18,6 @@ public final class SubjectDemoData {
     private static synchronized DBHelper database(Context context) {
         if (helper == null) {
             helper = new DBHelper(context.getApplicationContext(), DATABASE);
-            SQLiteDatabase db = helper.getWritableDatabase();
-            String today = LocalDate.now().toString();
-            // ID riêng để không trùng lịch ngày mai có sẵn trong seed.
-            db.execSQL("INSERT OR IGNORE INTO StudySchedule"
-                    + "(id,studentId,subjectId,studyDate,startTime,endTime,location,status)"
-                    + " VALUES(101,1,1,?,'09:00','10:00','Phòng A101','PENDING'),"
-                    + "(102,1,2,?,'14:00','15:30','Thư viện','CONFIRMED'),"
-                    + "(103,1,1,?,'16:00','17:00','Đã hủy','CANCELLED'),"
-                    + "(104,2,2,?,'08:00','09:00','Sinh viên khác','PENDING')",
-                    new Object[]{today, today, today, today});
         }
         return helper;
     }
@@ -82,6 +70,6 @@ public final class SubjectDemoData {
     public static synchronized void reset(Context context) {
         if (helper != null) { helper.close(); helper = null; }
         context.deleteDatabase(DATABASE);
-        database(context);
+        database(context).getWritableDatabase();
     }
 }
