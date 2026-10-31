@@ -3,14 +3,27 @@
     android:id="@+id/common_root" android:layout_width="match_parent" android:layout_height="match_parent"
     android:fillViewport="true">
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="vertical" android:padding="24dp">
+        android:orientation="vertical" android:padding="16dp">
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="@string/subject_form_title" android:textSize="24sp" android:textStyle="bold"
-            android:paddingBottom="16dp" />
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="@string/subject_form_placeholder" android:textSize="16sp" android:paddingBottom="24dp" />
+            android:text="@string/subject_form_title" android:textSize="24sp" android:textStyle="bold" />
+        <EditText android:id="@+id/subject_form_code" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="@string/subject_code"
+            android:inputType="textCapCharacters" android:autofillHints="" />
+        <EditText android:id="@+id/subject_form_name" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="@string/subject_name"
+            android:inputType="textCapSentences" android:autofillHints="" />
+        <EditText android:id="@+id/subject_form_credits" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="@string/subject_credits"
+            android:inputType="number" android:autofillHints="" />
+        <EditText android:id="@+id/subject_form_description" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="@string/subject_description"
+            android:inputType="textMultiLine|textCapSentences" android:minLines="3" android:gravity="top"
+            android:autofillHints="" />
+        <TextView android:id="@+id/subject_form_message" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:accessibilityLiveRegion="polite" />
+        <Button android:id="@+id/subject_form_save" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/subject_save" android:enabled="false" />
         <Button android:id="@+id/subject_form_back" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:text="@string/common_back" />
-
     </LinearLayout>
 </ScrollView>
