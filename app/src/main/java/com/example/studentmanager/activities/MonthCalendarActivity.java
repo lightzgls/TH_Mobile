@@ -161,6 +161,8 @@ public class MonthCalendarActivity extends BaseActivity {
                 GridLayout.spec(index / 7), GridLayout.spec(index % 7, 1f));
         params.width = 0;
         params.height = Math.round(heightDp * getResources().getDisplayMetrics().density);
+        // Căn theo ô, tránh baseline của nhãn hai dòng làm lệch cả hàng.
+        params.setGravity(Gravity.FILL);
         return params;
     }
 
