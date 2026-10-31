@@ -1,0 +1,51 @@
+<resources>
+    <string name="student_list_title">Quản lý sinh viên</string>
+    <string name="student_list_description">Tìm kiếm, xem, thêm, cập nhật và xóa hồ sơ sinh viên.</string>
+    <string name="student_search_hint">Nhập mã, họ tên hoặc email</string>
+    <string name="student_search">Tìm kiếm</string>
+    <string name="student_add">+ Thêm sinh viên</string>
+    <string name="student_loading">Đang tải danh sách sinh viên…</string>
+    <string name="student_result_count">Tìm thấy %1$d sinh viên</string>
+    <string name="student_empty">Không tìm thấy sinh viên phù hợp.</string>
+    <string name="student_access_denied">Bạn không có quyền truy cập chức năng quản lý sinh viên. Vui lòng đăng nhập bằng tài khoản Admin.</string>
+    <string name="student_row_info">Mã: %1$s\nEmail: %2$s\nĐiện thoại: %3$s</string>
+    <string name="student_action_detail">Chi tiết</string>
+    <string name="student_action_edit">Sửa</string>
+    <string name="student_action_delete">Xóa</string>
+    <string name="student_delete_title">Xác nhận xóa sinh viên</string>
+    <string name="student_delete_confirm">Bạn có chắc muốn xóa sinh viên %1$s? Thao tác này cũng xóa tài khoản đăng nhập và %2$d lịch học liên quan. Không thể hoàn tác.</string>
+    <string name="student_cancel">Hủy</string>
+    <string name="student_cannot_count_schedules">Không thể kiểm tra số lịch liên quan. Vui lòng thử lại.</string>
+    <string name="student_deleting">Đang xóa sinh viên…</string>
+    <string name="student_delete_success">Đã xóa sinh viên và dữ liệu liên quan.</string>
+    <string name="student_not_found">Không tìm thấy sinh viên.</string>
+
+    <string name="student_form_add_title">Thêm sinh viên</string>
+    <string name="student_form_edit_title">Cập nhật sinh viên</string>
+    <string name="student_label_code">Mã sinh viên</string>
+    <string name="student_hint_code">Ví dụ: SV003</string>
+    <string name="student_label_fullname">Họ và tên</string>
+    <string name="student_hint_fullname">Nhập họ và tên sinh viên</string>
+    <string name="student_label_email">Email</string>
+    <string name="student_hint_email">name@example.com</string>
+    <string name="student_label_phone">Số điện thoại</string>
+    <string name="student_hint_phone">Nhập số điện thoại</string>
+    <string name="student_account_section">Tài khoản đăng nhập</string>
+    <string name="student_label_username">Username</string>
+    <string name="student_hint_username">Tên đăng nhập cho sinh viên</string>
+    <string name="student_label_password">Mật khẩu</string>
+    <string name="student_hint_password">Mật khẩu ban đầu</string>
+    <string name="student_save">Lưu thông tin</string>
+    <string name="student_create_success">Đã tạo sinh viên và tài khoản đăng nhập.</string>
+    <string name="student_update_success">Đã cập nhật thông tin sinh viên.</string>
+    <string name="student_error_code">Vui lòng nhập mã sinh viên.</string>
+    <string name="student_error_fullname">Vui lòng nhập họ và tên.</string>
+    <string name="student_error_email">Vui lòng nhập email.</string>
+    <string name="student_error_email_invalid">Email chưa đúng định dạng.</string>
+    <string name="student_error_phone">Vui lòng nhập số điện thoại.</string>
+    <string name="student_error_username">Vui lòng nhập username.</string>
+    <string name="student_error_password">Vui lòng nhập mật khẩu.</string>
+    <string name="student_error_duplicate_code_or_username">Mã sinh viên hoặc username đã tồn tại.</string>
+
+    <string name="student_detail_title">Thông tin sinh viên</string>
+</resources>
