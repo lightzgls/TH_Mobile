@@ -38,7 +38,8 @@ public abstract class BaseActivity extends ComponentActivity {
         super.onResume();
         if (this instanceof MainActivity || this instanceof LoginActivity) return;
         // Cac trang quan ly thuoc Admin; cac trang con lai thuoc Student.
-        String role = this instanceof AdminHomeActivity || this instanceof StudentListActivity
+        String role = this instanceof SubjectPickerActivity ? DbContract.STUDENT
+                : this instanceof AdminHomeActivity || this instanceof StudentListActivity
                 || this instanceof StudentFormActivity || this instanceof StudentDetailActivity
                 || this instanceof SubjectListActivity || this instanceof SubjectFormActivity
                 ? DbContract.ADMIN : DbContract.STUDENT;
