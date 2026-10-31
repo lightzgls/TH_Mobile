@@ -14,7 +14,7 @@ Nhánh: feature/sang-subject-month. Ngày kiểm tra: 31/10/2026.
 
 Demo dùng lại layout và xử lý của các Activity thật; chỉ thay nguồn dữ liệu và quyền trong `src/debug`. Database `sang_visual_demo.db` tách khỏi database ứng dụng; không lưu phiên demo vào SessionManager. Mã demo, icon và menu không có trong APK release.
 
-Bộ mẫu dùng chung hiện có 14 lịch, tự tạo qua DBHelper cho cả database chính lần đầu và database demo. Xem [bộ dữ liệu cho cả nhóm](SAMPLE_DATA.md); người đã cài demo cũ bấm **Tạo lại dữ liệu demo** để lấy bộ mới.
+Bộ mẫu dùng chung hiện có 3.670 lịch, tự tạo qua DBHelper cho cả database chính lần đầu và database demo. Xem [bộ dữ liệu cho cả nhóm](SAMPLE_DATA.md); người đã cài demo cũ bấm **Tạo lại dữ liệu demo** để lấy bộ mới.
 
 ## Phần đã triển khai
 

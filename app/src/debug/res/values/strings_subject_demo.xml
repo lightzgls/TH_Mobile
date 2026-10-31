@@ -14,5 +14,5 @@
     <string name="subject_demo_navigation">Ngày truyền sang màn hình: %1$s\n\nĐây là điểm nối với phần của %2$s. Demo dừng ở đây để bạn kiểm tra ngày đã chọn.</string>
     <string name="subject_demo_thu">Thu (form đặt lịch)</string>
     <string name="subject_demo_huy">Huy (lịch ngày/tuần)</string>
-    <string name="subject_demo_tip">Gợi ý: chạm môn để xem/sửa/xóa; GIT101 chưa có lịch nên xóa được. Bộ mẫu có 14 lịch cho hai sinh viên, gồm hai lịch hiệu lực hôm nay của sv01 và lịch ở tháng trước/sau. Thử tìm chuỗi không tồn tại để xem trạng thái trống. Dùng Tạo lại dữ liệu demo để lấy bộ mẫu mới.</string>
+    <string name="subject_demo_tip">Gợi ý: chạm môn để xem/sửa/xóa; GIT101 chưa có lịch nên xóa được. Bộ mẫu có 30 sinh viên, 30 môn và 3.670 lịch, gồm hai lịch hiệu lực hôm nay của sv01 và lịch ở tháng trước/sau. Thử tìm chuỗi không tồn tại để xem trạng thái trống. Dùng Tạo lại dữ liệu demo để lấy bộ mẫu mới.</string>
 </resources>

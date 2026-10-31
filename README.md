@@ -27,7 +27,7 @@
 3. Thử quản lý môn, chọn môn và lịch tháng ngay với dữ liệu mẫu. Nếu chưa thấy cấu hình Run, chạy **app** rồi mở icon **Sáng UI Demo** trên thiết bị.
 4. Bấm **Tạo lại dữ liệu demo** để lấy bộ mẫu mới nếu đã cài demo từ trước.
 
-Bộ mẫu có **1 Admin, 2 Student, 3 môn và 14 lịch**, gồm lịch hôm nay, ngày mai, đã qua, sát giờ và ở tháng trước/sau. GIT101 chưa có lịch để thử xóa; MOB101 và DB101 có lịch để thử chặn xóa. Xem [bộ dữ liệu và cách thử cho cả nhóm](docs/SAMPLE_DATA.md).
+Bộ mẫu có **1 Admin, 30 Student, 30 môn và 3.670 lịch**, gồm lịch hôm nay, ngày mai, đã qua, sát giờ và ở tháng trước/sau. GIT101 chưa có lịch để thử xóa; MOB101 và DB101 có lịch để thử chặn xóa. Xem [bộ dữ liệu và cách thử cho cả nhóm](docs/SAMPLE_DATA.md).
 
 ## Trạng thái hiện tại
 
@@ -130,7 +130,7 @@ Tên layout có dạng `activity_auth_login.xml`, `activity_student_list.xml`…
 
 ## Dữ liệu demo
 
-DBHelper chỉ seed lần đầu: 1 Admin, 2 Student, 3 môn và 14 lịch; mỗi Student có lịch ngày hôm sau. Ngày mẫu tính theo ngày tạo database trên thiết bị. Database của demo visual dùng cùng bộ seed, lưu riêng trong `sang_visual_demo.db`.
+DBHelper chỉ seed lần đầu: 1 Admin, 30 Student, 30 môn và 3.670 lịch; có lịch từ 90 ngày trước đến 90 ngày sau. Ngày mẫu tính theo ngày tạo database trên thiết bị. Database của demo visual dùng cùng bộ seed, lưu riêng trong `sang_visual_demo.db`.
 
 | Username | Mật khẩu demo | Vai trò |
 | --- | --- | --- |
