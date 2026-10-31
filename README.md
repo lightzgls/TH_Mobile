@@ -33,7 +33,7 @@ Bộ mẫu có **1 Admin, 30 Student, 30 môn và 3.670 lịch**, gồm lịch h
 
 Đã có cấu hình project, 4 bảng SQLite, khóa ngoại, seed demo, model, chữ ký hàm, Activity và layout riêng. Phần An đã có đăng nhập, phân quyền, lưu phiên và thông báo. Khi mở ứng dụng, phiên được kiểm tra để chuyển vào đúng màn hình.
 
-**Nhánh feature/sang-subject-month đã ghép phần Sáng với repository của Huy và auth/thông báo của An.** Lịch tháng lấy dữ liệu thật theo phiên Student; CRUD môn dùng quyền Admin. Huy mới giao repository; màn hình danh sách/chi tiết/ngày-tuần vẫn là khung, form đặt/sửa của Thu chưa ghép. Phần tích hợp này chỉ ở nhánh Sáng; main hiện chỉ nhận bộ sample lớn. Hướng dẫn phần An: [docs/AN_GUIDE.md](docs/AN_GUIDE.md).
+**Main đã tích hợp đăng nhập/thông báo của An, quản lý môn/lịch tháng của Sáng, đặt/sửa lịch của Thu, CRUD sinh viên của Quang và repository/danh sách lịch của Huy.** Đã bổ sung điểm nối chi tiết lịch, xác nhận/hủy/xóa và lịch ngày/tuần để hoàn thiện luồng chung. Tất cả màn hình thật dùng study_schedule.db; giữ nguyên bộ sample 30 sinh viên, 30 môn và 3.670 lịch của Sáng. Xem [kiểm tra tích hợp](docs/INTEGRATION_CHECK.md) và [hướng dẫn An](docs/AN_GUIDE.md).
 
 Xem [kế hoạch đầy đủ](docs/IMPLEMENTATION_PLAN.md) và [bản Word](docs/Ke_hoach_nhom_5_nguoi.docx).
 
