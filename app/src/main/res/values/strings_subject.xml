@@ -14,6 +14,7 @@
     <string name="subject_name">Tên môn học *</string>
     <string name="subject_description">Mô tả (không bắt buộc)</string>
     <string name="subject_credits">Số tín chỉ *</string>
+    <string name="subject_credits_value">%1$d</string>
     <string name="subject_row">%1$s — %2$s\n%3$d tín chỉ</string>
     <string name="subject_detail">%1$s — %2$s\nSố tín chỉ: %3$d\n\n%4$s</string>
     <string name="subject_delete_confirm">Xóa môn %1$s? Môn đã có lịch học sẽ không thể xóa.</string>

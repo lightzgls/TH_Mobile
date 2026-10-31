@@ -54,7 +54,7 @@ public class SubjectFormActivity extends BaseActivity {
                     if (!populated && subject != null) {
                         code.setText(subject.subjectCode);
                         name.setText(subject.subjectName);
-                        credits.setText(Integer.toString(subject.credits));
+                        credits.setText(getString(R.string.subject_credits_value, subject.credits));
                         description.setText(subject.description);
                     }
                     populated = true;
