@@ -48,6 +48,11 @@ public class ScheduleRepositoryTest {
         context = ApplicationProvider.getApplicationContext();
         helper = new DBHelper(context, null);
         db = helper.getWritableDatabase();
+        // Bộ test repository dùng hai lịch cố định, độc lập với số lượng sample chung.
+        db.delete(DbContract.Schedules.TABLE, null, null);
+        String tomorrow = LocalDate.now().plusDays(1).toString();
+        db.execSQL("INSERT INTO StudySchedule VALUES(1,1,1,?,'09:00','10:00','Phòng A101','PENDING')", new Object[]{tomorrow});
+        db.execSQL("INSERT INTO StudySchedule VALUES(2,2,2,?,'10:00','11:00','Phòng A102','CONFIRMED')", new Object[]{tomorrow});
         authGuard = new TestAuthGuard(context);
         repository = new ScheduleRepository(context, helper, authGuard);
     }

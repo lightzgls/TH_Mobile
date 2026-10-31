@@ -20,6 +20,9 @@ import com.example.studentmanager.utils.SessionManager;
 public abstract class BaseActivity extends ComponentActivity {
     private int checkNumber;
 
+    // Các màn hình demo trong src/debug dùng dữ liệu riêng, tự kiểm tra quyền demo.
+    protected boolean requiresSession() { return true; }
+
     protected void setPage(int layout) {
         setContentView(layout);
         View root = findViewById(R.id.common_root);
@@ -36,9 +39,10 @@ public abstract class BaseActivity extends ComponentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (this instanceof MainActivity || this instanceof LoginActivity) return;
+        if (!requiresSession() || this instanceof MainActivity || this instanceof LoginActivity) return;
         // Cac trang quan ly thuoc Admin; cac trang con lai thuoc Student.
-        String role = this instanceof AdminHomeActivity || this instanceof StudentListActivity
+        String role = this instanceof SubjectPickerActivity ? DbContract.STUDENT
+                : this instanceof AdminHomeActivity || this instanceof StudentListActivity
                 || this instanceof StudentFormActivity || this instanceof StudentDetailActivity
                 || this instanceof SubjectListActivity || this instanceof SubjectFormActivity
                 ? DbContract.ADMIN : DbContract.STUDENT;
