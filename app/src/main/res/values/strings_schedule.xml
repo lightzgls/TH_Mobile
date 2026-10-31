@@ -36,4 +36,6 @@
     <string name="schedule_detail_delete_dialog_msg">Bạn có chắc chắn muốn xóa vĩnh viễn lịch học này khỏi hệ thống?</string>
     <string name="schedule_common_confirm">Đồng ý</string>
     <string name="schedule_common_cancel">Bỏ qua</string>
+    <string name="schedule_load_error">Không thể xử lý lịch học. Vui lòng thử lại.</string>
+    <string name="schedule_invalid_range">Từ ngày phải nhỏ hơn hoặc bằng đến ngày.</string>
 </resources>

@@ -1,4 +1,15 @@
 <resources>
     <string name="agenda_calendar_title">Lịch ngày và tuần</string>
-    <string name="agenda_calendar_placeholder">Phụ trách: Huy. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+    <string name="agenda_day">Ngày</string>
+    <string name="agenda_week">Tuần</string>
+    <string name="agenda_previous">Trước</string>
+    <string name="agenda_next">Sau</string>
+    <string name="agenda_today">Hôm nay</string>
+    <string name="agenda_choose">Chọn ngày</string>
+    <string name="agenda_book_day">Đặt lịch ngày này</string>
+    <string name="agenda_month">Xem lịch tháng</string>
+    <string name="agenda_range">%1$s – %2$s</string>
+    <string name="agenda_empty">Không có lịch học đang hiệu lực.</string>
+    <string name="agenda_count">Có %1$d buổi học đang hiệu lực.</string>
+    <string name="agenda_row">%1$s–%2$s | %3$s — %4$s\n%5$s\n%6$s</string>
 </resources>
