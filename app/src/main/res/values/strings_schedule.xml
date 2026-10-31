@@ -1,6 +1,18 @@
 <resources>
     <string name="schedule_list_title">Danh sách lịch học</string>
-    <string name="schedule_list_placeholder">Phụ trách: Huy. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+    <string name="schedule_list_search_hint">Tìm theo mã môn, tên môn, địa điểm...</string>
+    <string name="schedule_list_from_date">Từ ngày</string>
+    <string name="schedule_list_to_date">Đến ngày</string>
+    <string name="schedule_status_all">Tất cả trạng thái</string>
+    <string name="schedule_status_pending">Chờ xác nhận (PENDING)</string>
+    <string name="schedule_status_confirmed">Đã xác nhận (CONFIRMED)</string>
+    <string name="schedule_status_cancelled">Đã hủy (CANCELLED)</string>
+    <string name="schedule_list_apply_filter">Lọc / Tìm</string>
+    <string name="schedule_list_clear_filter">Xóa lọc</string>
+    <string name="schedule_list_add_booking">Đặt lịch mới</string>
+    <string name="schedule_list_open_agenda">Xem lịch Ngày/Tuần</string>
+    <string name="schedule_list_empty_msg">Chưa có lịch học nào phù hợp.</string>
+    <string name="schedule_list_loading">Đang tải danh sách lịch học...</string>
     <string name="schedule_detail_title">Chi tiết lịch học</string>
     <string name="schedule_detail_placeholder">Phụ trách: Huy. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
 </resources>
