@@ -39,7 +39,7 @@ public class SubjectRepositoryTest {
     private SubjectDraft draft(String code) {
         SubjectDraft draft = new SubjectDraft();
         draft.subjectCode = code;
-        draft.subjectName = "  Kiểm thử  ";
+        draft.subjectName = "  Môn kiểm thử repository  ";
         draft.credits = 2;
         return draft;
     }
@@ -49,10 +49,10 @@ public class SubjectRepositoryTest {
         assertTrue(created.ok);
         Subject subject = repository.get(created.id);
         assertEquals("TEST01", subject.subjectCode);
-        assertEquals("Kiểm thử", subject.subjectName);
+        assertEquals("Môn kiểm thử repository", subject.subjectName);
         assertEquals("", subject.description);
         assertEquals(created.id, repository.list("test01").get(0).id);
-        assertEquals(1, repository.list("Kiểm thử").size());
+        assertEquals(1, repository.list("Môn kiểm thử repository").size());
         SubjectDraft edited = draft("test02");
         edited.description = "  Mô tả  ";
         edited.credits = 4;
@@ -103,7 +103,7 @@ public class SubjectRepositoryTest {
     @Test public void studentReadsButCannotWriteAndLoggedOutUserReadsNothing() {
         guard.admin = false;
         guard.student = true;
-        assertEquals(3, repository.list(null).size());
+        assertEquals(30, repository.list(null).size());
         assertNotNull(repository.get(1));
         assertEquals(ActionResult.FORBIDDEN, repository.create(draft("DENIED")).code);
         assertEquals(ActionResult.FORBIDDEN, repository.update(1, draft("DENIED")).code);

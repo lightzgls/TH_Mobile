@@ -60,7 +60,7 @@ public class SubjectVisualDemoTest {
                      ActivityScenario.launch(SubjectVisualDemoActivity.Subjects.class)) {
             awaitDatabase();
             screen.onActivity(activity -> {
-                assertEquals(3, ((ListView) activity.findViewById(R.id.subject_browser_list)).getCount());
+                assertEquals(30, ((ListView) activity.findViewById(R.id.subject_browser_list)).getCount());
                 assertTrue(activity.findViewById(R.id.subject_browser_add).isEnabled());
             });
             screenshot("subjects");
@@ -104,7 +104,7 @@ public class SubjectVisualDemoTest {
                         ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED)
                                 .iterator().next();
                 ListView list = picker.findViewById(R.id.subject_browser_list);
-                assertEquals(3, list.getCount());
+                assertEquals(30, list.getCount());
                 list.performItemClick(list.getChildAt(0), 0, list.getAdapter().getItemId(0));
             });
             awaitDatabase();

@@ -33,11 +33,13 @@ public class DBHelperSchemaTest {
     @Test public void createsFourBusinessTablesAndSeedsOnce() {
         assertEquals(4, count("SELECT COUNT(*) FROM sqlite_master WHERE type='table' "
                 + "AND name IN ('Account','Student','Subject','StudySchedule')"));
-        assertEquals(3, count("SELECT COUNT(*) FROM Account"));
-        assertEquals(14, count("SELECT COUNT(*) FROM StudySchedule"));
+        assertEquals(31, count("SELECT COUNT(*) FROM Account"));
+        assertEquals(30, count("SELECT COUNT(*) FROM Student"));
+        assertEquals(30, count("SELECT COUNT(*) FROM Subject"));
+        assertEquals(3670, count("SELECT COUNT(*) FROM StudySchedule"));
         helper.getWritableDatabase();
-        assertEquals(3, count("SELECT COUNT(*) FROM Account"));
-        assertEquals(14, count("SELECT COUNT(*) FROM StudySchedule"));
+        assertEquals(31, count("SELECT COUNT(*) FROM Account"));
+        assertEquals(3670, count("SELECT COUNT(*) FROM StudySchedule"));
         assertEquals(1, count("PRAGMA foreign_keys"));
     }
 
@@ -80,6 +82,9 @@ public class DBHelperSchemaTest {
         assertTrue(count("SELECT COUNT(*) FROM StudySchedule WHERE studyDate='"
                 + today.withDayOfMonth(1).plusMonths(1) + "'") > 0);
         assertEquals(0, count("SELECT COUNT(*) FROM StudySchedule WHERE subjectId=3"));
+        assertEquals(30, count("SELECT COUNT(DISTINCT studentId) FROM StudySchedule"));
+        assertTrue(count("SELECT COUNT(*) FROM StudySchedule WHERE studyDate='" + today.minusDays(90) + "'") > 0);
+        assertTrue(count("SELECT COUNT(*) FROM StudySchedule WHERE studyDate='" + today.plusDays(90) + "'") > 0);
         assertEquals(0, count("SELECT COUNT(*) FROM StudySchedule a JOIN StudySchedule b"
                 + " ON a.id<b.id AND a.studentId=b.studentId AND a.studyDate=b.studyDate"
                 + " AND a.startTime<b.endTime AND a.endTime>b.startTime"
