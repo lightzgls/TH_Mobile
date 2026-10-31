@@ -1,8 +1,32 @@
 <resources>
-    <string name="subject_list_title">Danh sách môn học</string>
-    <string name="subject_list_placeholder">Phụ trách: Sáng. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
-    <string name="subject_form_title">Thêm và sửa môn học</string>
-    <string name="subject_form_placeholder">Phụ trách: Sáng. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+    <string name="subject_list_title">Quản lý môn học</string>
+    <string name="subject_form_title">Thông tin môn học</string>
     <string name="subject_picker_title">Chọn môn học</string>
-    <string name="subject_picker_placeholder">Phụ trách: Sáng. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+    <string name="subject_search_hint">Tìm theo mã hoặc tên môn</string>
+    <string name="subject_search">Tìm kiếm</string>
+    <string name="subject_add">Thêm môn học</string>
+    <string name="subject_edit">Sửa</string>
+    <string name="subject_delete">Xóa</string>
+    <string name="subject_cancel">Hủy</string>
+    <string name="subject_close">Đóng</string>
+    <string name="subject_save">Lưu môn học</string>
+    <string name="subject_code">Mã môn học *</string>
+    <string name="subject_name">Tên môn học *</string>
+    <string name="subject_description">Mô tả (không bắt buộc)</string>
+    <string name="subject_credits">Số tín chỉ *</string>
+    <string name="subject_credits_value">%1$d</string>
+    <string name="subject_row">%1$s — %2$s\n%3$d tín chỉ</string>
+    <string name="subject_detail">%1$s — %2$s\nSố tín chỉ: %3$d\n\n%4$s</string>
+    <string name="subject_delete_confirm">Xóa môn %1$s? Môn đã có lịch học sẽ không thể xóa.</string>
+    <string name="subject_loading">Đang tải…</string>
+    <string name="subject_saving">Đang lưu…</string>
+    <string name="subject_empty">Không tìm thấy môn học.</string>
+    <string name="subject_error">Không thể tải môn học. Vui lòng thử lại.</string>
+    <string name="subject_admin_required">Cần đăng nhập Admin để quản lý môn học.</string>
+    <string name="subject_student_required">Cần đăng nhập Student để chọn môn học.</string>
+    <string name="subject_missing">Môn học không còn tồn tại hoặc bạn không có quyền truy cập.</string>
+    <string name="subject_required">Không được để trống.</string>
+    <string name="subject_invalid_credits">Nhập số nguyên dương trong phạm vi cho phép.</string>
+    <string name="subject_saved">Đã lưu môn học.</string>
+    <string name="subject_deleted">Đã xóa môn học.</string>
 </resources>
