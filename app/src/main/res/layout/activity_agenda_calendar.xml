@@ -3,14 +3,38 @@
     android:id="@+id/common_root" android:layout_width="match_parent" android:layout_height="match_parent"
     android:fillViewport="true">
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="vertical" android:padding="24dp">
+        android:orientation="vertical" android:padding="12dp">
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="@string/agenda_calendar_title" android:textSize="24sp" android:textStyle="bold"
-            android:paddingBottom="16dp" />
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="@string/agenda_calendar_placeholder" android:textSize="16sp" android:paddingBottom="24dp" />
+            android:text="@string/agenda_calendar_title" android:textSize="24sp" android:textStyle="bold" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            style="?android:attr/buttonBarStyle">
+            <Button android:id="@+id/agenda_day" style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/agenda_day" />
+            <Button android:id="@+id/agenda_week" style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/agenda_week" />
+            <Button android:id="@+id/agenda_month" style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/agenda_month" />
+        </LinearLayout>
+        <TextView android:id="@+id/agenda_range" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="20sp" android:gravity="center" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            style="?android:attr/buttonBarStyle">
+            <Button android:id="@+id/agenda_previous" style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/agenda_previous" />
+            <Button android:id="@+id/agenda_today" style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/agenda_today" />
+            <Button android:id="@+id/agenda_next" style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/agenda_next" />
+        </LinearLayout>
+        <Button android:id="@+id/agenda_choose" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/agenda_choose" />
+        <Button android:id="@+id/agenda_book" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/agenda_book_day" />
+        <TextView android:id="@+id/agenda_message" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:accessibilityLiveRegion="polite" />
+        <LinearLayout android:id="@+id/agenda_rows" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical" />
         <Button android:id="@+id/agenda_calendar_back" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:text="@string/common_back" />
-
     </LinearLayout>
 </ScrollView>
