@@ -33,6 +33,11 @@ public class MonthCalendarActivity extends BaseActivity {
     private boolean loaded;
     private int request;
 
+    protected Session studentSession() { return new AuthGuard(this).requireStudent(); }
+    protected List<ScheduleItem> loadSchedules(ScheduleFilter filter) {
+        return new ScheduleRepository(this).listMine(filter);
+    }
+
     @Override protected void onCreate(Bundle state) {
         super.onCreate(state);
         setPage(R.layout.activity_month_calendar);
@@ -51,14 +56,19 @@ public class MonthCalendarActivity extends BaseActivity {
         findViewById(R.id.month_today).setOnClickListener(view -> {
             selectedDate = LocalDate.now(); loadMonth();
         });
-        findViewById(R.id.month_open_day).setOnClickListener(view -> openDay(DayWeekCalendarActivity.class));
-        findViewById(R.id.month_book).setOnClickListener(view -> openDay(BookingFormActivity.class));
+        findViewById(R.id.month_open_day).setOnClickListener(view -> openDay(DayWeekCalendarActivity.class, selectedDate));
+        findViewById(R.id.month_book).setOnClickListener(view -> openDay(BookingFormActivity.class, selectedDate));
         findViewById(R.id.month_calendar_back).setOnClickListener(view -> finish());
     }
 
-    private void openDay(Class<?> activity) {
+    protected void openDay(Class<?> activity, LocalDate day) {
         startActivity(new Intent(this, activity).putExtra(
-                AppConstants.EXTRA_SELECTED_DATE, selectedDate.format(DateTimeHelper.DB_DATE)));
+                AppConstants.EXTRA_SELECTED_DATE, day.format(DateTimeHelper.DB_DATE)));
+    }
+
+    protected void openSchedule(ScheduleItem item) {
+        startActivity(new Intent(this, ScheduleDetailActivity.class)
+                .putExtra(AppConstants.EXTRA_SCHEDULE_ID, item.id));
     }
 
     private void changeMonth(int amount) {
@@ -85,13 +95,13 @@ public class MonthCalendarActivity extends BaseActivity {
         message.setText(R.string.month_loading);
         DbExecutor.execute(() -> {
             try {
-                Session session = new AuthGuard(this).requireStudent();
+                Session session = studentSession();
                 ScheduleFilter filter = new ScheduleFilter();
                 filter.fromDate = month.atDay(1).format(DateTimeHelper.DB_DATE);
                 filter.toDate = month.atEndOfMonth().format(DateTimeHelper.DB_DATE);
                 List<ScheduleItem> result = session == null ? new ArrayList<>()
                         : MonthCalendarHelper.activeSchedules(
-                                new ScheduleRepository(this).listMine(filter), month, session.studentId);
+                                loadSchedules(filter), month, session.studentId);
                 runOnUiThread(() -> {
                     if (isFinishing() || isDestroyed() || ticket != request) return;
                     schedules = result;
@@ -167,8 +177,7 @@ public class MonthCalendarActivity extends BaseActivity {
                     item.startTime, item.endTime, item.location,
                     getString(DbContract.PENDING.equals(item.status)
                             ? R.string.month_pending : R.string.month_confirmed)));
-            row.setOnClickListener(view -> startActivity(new Intent(this, ScheduleDetailActivity.class)
-                    .putExtra(AppConstants.EXTRA_SCHEDULE_ID, item.id)));
+            row.setOnClickListener(view -> openSchedule(item));
             scheduleRows.addView(row);
         }
         if (loaded) message.setText(count == 0 ? getString(R.string.month_empty) : "");

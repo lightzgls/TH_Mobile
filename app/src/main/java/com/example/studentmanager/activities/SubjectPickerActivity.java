@@ -3,10 +3,8 @@ package com.example.studentmanager.activities;
 import android.content.Intent;
 import android.widget.Toast;
 import com.example.studentmanager.R;
-import com.example.studentmanager.dal.SubjectRepository;
 import com.example.studentmanager.models.Subject;
 import com.example.studentmanager.utils.AppConstants;
-import com.example.studentmanager.utils.AuthGuard;
 import com.example.studentmanager.utils.DbExecutor;
 
 /** Thu mở qua Activity Result API; mặc định hủy, chỉ trả ID còn hợp lệ. */
@@ -20,8 +18,8 @@ public class SubjectPickerActivity extends SubjectListActivity {
         selecting = true;
         DbExecutor.execute(() -> {
             try {
-                boolean allowed = new AuthGuard(this).requireStudent() != null;
-                Subject subject = allowed ? new SubjectRepository(this).get(selected.id) : null;
+                boolean allowed = createAuthGuard().requireStudent() != null;
+                Subject subject = allowed ? createRepository().get(selected.id) : null;
                 runOnUiThread(() -> {
                     if (isFinishing() || isDestroyed()) return;
                     selecting = false;
