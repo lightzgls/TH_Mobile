@@ -9,10 +9,12 @@ Nhánh: feature/sang-subject-month. Ngày kiểm tra: 31/10/2026.
 3. Nếu chưa thấy cấu hình đó, chạy cấu hình **app** như bình thường rồi mở icon **Sáng UI Demo** trong danh sách ứng dụng trên thiết bị.
 4. Chọn **Quản lý môn** để tìm, xem chi tiết, thêm, sửa, xóa. Để trống form rồi bấm lưu để xem lỗi; thử mã trùng; xóa GIT101 để xem xác nhận, xóa MOB101 để xem lỗi môn đang có lịch.
 5. Chọn **Chọn môn** rồi chạm một môn: menu demo hiện lại ID, mã và tên môn đã nhận qua Activity Result.
-6. Chọn **Lịch tháng**: hôm nay có hai lịch hiệu lực, ngày mai có một lịch. Chạm ngày khác để xem trạng thái trống; chuyển tháng; chạm lịch để xem thông tin. Nút mở ngày/đặt lịch hiện ngày sẽ truyền sang phần đồng đội.
+6. Chọn **Lịch tháng**: hôm nay có hai lịch hiệu lực; bộ mẫu còn có lịch ngày mai, lịch đã qua và lịch ở tháng trước/sau. Chạm ngày khác để xem trạng thái trống; chuyển tháng; chạm lịch để xem thông tin. Nút mở ngày/đặt lịch hiện ngày sẽ truyền sang phần đồng đội.
 7. Xoay màn hình, mở bàn phím và thử cỡ chữ lớn để tự xem bố cục. Dùng **Tạo lại dữ liệu demo** khi muốn về dữ liệu ban đầu.
 
 Demo dùng lại layout và xử lý của các Activity thật; chỉ thay nguồn dữ liệu và quyền trong `src/debug`. Database `sang_visual_demo.db` tách khỏi database ứng dụng; không lưu phiên demo vào SessionManager. Mã demo, icon và menu không có trong APK release.
+
+Bộ mẫu dùng chung hiện có 14 lịch, tự tạo qua DBHelper cho cả database chính lần đầu và database demo. Xem [bộ dữ liệu cho cả nhóm](SAMPLE_DATA.md); người đã cài demo cũ bấm **Tạo lại dữ liệu demo** để lấy bộ mới.
 
 ## Phần đã triển khai
 
@@ -47,6 +49,7 @@ Lệnh tại thư mục gốc:
 - 6 unit test đạt: 2 test định dạng ngày giờ có sẵn, 4 test mới về lịch tháng.
 - 15 test trên emulator Pixel_10 / Android 17 API 37 đạt: 4 schema có sẵn, 6 repository môn, 5 màn hình của Sáng.
 - Bổ sung 4 test visual demo đạt: danh sách có dữ liệu, form báo lỗi rồi lưu, picker trả ID/tên về menu, tháng hiện hai lịch hiệu lực. Tổng hiện tại là 6 unit test và 19 test emulator.
+- Khi bổ sung bộ mẫu dùng chung, thêm 1 test kiểm tra dữ liệu biên tháng, trạng thái, khóa ngoại và không trùng giờ hiệu lực. Bộ kiểm thử hiện có 6 unit test và 20 test emulator.
 - Test repository dùng SQLite in-memory, quyền giả chỉ nằm trong androidTest. Kiểm tra CRUD, chuẩn hóa, tìm chuỗi có %, _, dấu nháy và dấu gạch chéo, dữ liệu sai, mã trùng, chặn xóa môn có lịch đã hủy, quyền Student và chưa đăng nhập.
 - Test tháng kiểm tra 28/29/30/31 ngày, lưới 4/5/6 tuần, năm nhuận thế kỷ, loại lịch hủy/khác Student/ngoài tháng, thứ tự giờ và id.
 - Test màn hình kiểm tra chặn truy cập chưa đăng nhập, ẩn thao tác Admin trong picker, giữ dữ liệu form khi tạo lại Activity, chuyển năm và giữ ngày chọn, extra ngày sai không gây crash.

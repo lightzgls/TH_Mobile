@@ -20,11 +20,20 @@
 | SDK Platform / Build Tools | Android 17 API 37.0 / 36.0.0 |
 | AndroidX Activity / WorkManager | 1.10.1 / 2.10.1 |
 
-## Trạng thái khung
+## Test nhanh với dữ liệu mẫu
+
+1. Lấy `main` mới nhất, mở Android Studio và chọn build variant **debug**.
+2. Chọn cấu hình **Sang UI Demo**, chọn emulator rồi bấm **Run ▶**.
+3. Thử quản lý môn, chọn môn và lịch tháng ngay với dữ liệu mẫu. Nếu chưa thấy cấu hình Run, chạy **app** rồi mở icon **Sáng UI Demo** trên thiết bị.
+4. Bấm **Tạo lại dữ liệu demo** để lấy bộ mẫu mới nếu đã cài demo từ trước.
+
+Bộ mẫu có **1 Admin, 2 Student, 3 môn và 14 lịch**, gồm lịch hôm nay, ngày mai, đã qua, sát giờ và ở tháng trước/sau. GIT101 chưa có lịch để thử xóa; MOB101 và DB101 có lịch để thử chặn xóa. Xem [bộ dữ liệu và cách thử cho cả nhóm](docs/SAMPLE_DATA.md).
+
+## Trạng thái hiện tại
 
 Đã có cấu hình project, 4 bảng SQLite, khóa ngoại, seed demo, model, chữ ký hàm, Activity và layout riêng. Trang mở đầu có nút xem màn hình rỗng Admin và Student **chỉ trong bản debug**, không tạo phiên hay cấp quyền.
 
-**Login, CRUD, đặt lịch, lịch biểu và thông báo chưa triển khai.** Hàm ghi trả `NOT_IMPLEMENTED`, hàm đọc trả rỗng/null, kiểm tra quyền mặc định từ chối. Đây là phần việc từng thành viên sẽ code. Khung chung và việc điều phối không tính đóng góp cá nhân.
+**Phần Sáng đã có CRUD môn, chọn môn và lịch tháng**, kèm demo visual trong `src/debug` dùng database riêng. Luồng chính còn chờ ghép đăng nhập của An, truy vấn lịch của Huy và form đặt/sửa của Thu; phần chưa triển khai vẫn giữ stub và từ chối quyền. Các nhánh cá nhân khác cần được kiểm tra, review và ghép riêng. Khung chung và việc điều phối không tính đóng góp cá nhân.
 
 Xem [kế hoạch đầy đủ](docs/IMPLEMENTATION_PLAN.md) và [bản Word](docs/Ke_hoach_nhom_5_nguoi.docx).
 
@@ -121,7 +130,7 @@ Tên layout có dạng `activity_auth_login.xml`, `activity_student_list.xml`…
 
 ## Dữ liệu demo
 
-DBHelper chỉ seed lần đầu: 1 Admin, 2 Student, 3 môn, mỗi Student có một lịch ngày hôm sau.
+DBHelper chỉ seed lần đầu: 1 Admin, 2 Student, 3 môn và 14 lịch; mỗi Student có lịch ngày hôm sau. Ngày mẫu tính theo ngày tạo database trên thiết bị. Database của demo visual dùng cùng bộ seed, lưu riêng trong `sang_visual_demo.db`.
 
 | Username | Mật khẩu demo | Vai trò |
 | --- | --- | --- |
