@@ -28,5 +28,4 @@
     <string name="subject_invalid_credits">Nhập số nguyên dương trong phạm vi cho phép.</string>
     <string name="subject_saved">Đã lưu môn học.</string>
     <string name="subject_deleted">Đã xóa môn học.</string>
-    <string name="subject_picker_placeholder">Phụ trách: Sáng. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
 </resources>
