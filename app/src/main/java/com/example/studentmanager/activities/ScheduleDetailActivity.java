@@ -29,6 +29,7 @@ import java.time.LocalTime;
 public class ScheduleDetailActivity extends BaseActivity {
     private ScheduleRepository repository;
     private long scheduleId = -1L;
+    private int request;
 
     private LinearLayout cardContainer;
     private LinearLayout actionsContainer;
@@ -55,6 +56,7 @@ public class ScheduleDetailActivity extends BaseActivity {
 
         initViews();
         setupEvents();
+        setButtonsEnabled(false);
     }
 
     private void initViews() {
@@ -93,7 +95,14 @@ public class ScheduleDetailActivity extends BaseActivity {
         loadScheduleDetail();
     }
 
+    @Override protected void onPause() {
+        request++;
+        super.onPause();
+    }
+
     private void loadScheduleDetail() {
+        int ticket = ++request;
+        setButtonsEnabled(false);
         if (scheduleId <= 0) {
             showErrorState(getString(R.string.schedule_detail_not_found));
             return;
@@ -102,9 +111,18 @@ public class ScheduleDetailActivity extends BaseActivity {
         if (progressView != null) progressView.setVisibility(View.VISIBLE);
 
         DbExecutor.execute(() -> {
-            ScheduleItem item = repository.getMine(scheduleId);
+            ScheduleItem item;
+            try {
+                item = repository.getMine(scheduleId);
+            } catch (RuntimeException error) {
+                runOnUiThread(() -> {
+                    if (!isFinishing() && !isDestroyed() && ticket == request)
+                        showErrorState(getString(R.string.schedule_load_error));
+                });
+                return;
+            }
             runOnUiThread(() -> {
-                if (isFinishing() || isDestroyed()) return;
+                if (isFinishing() || isDestroyed() || ticket != request) return;
                 if (progressView != null) progressView.setVisibility(View.GONE);
 
                 if (item == null) {
@@ -117,6 +135,7 @@ public class ScheduleDetailActivity extends BaseActivity {
     }
 
     private void renderSchedule(ScheduleItem item) {
+        setButtonsEnabled(true);
         cardContainer.setVisibility(View.VISIBLE);
         actionsContainer.setVisibility(View.VISIBLE);
 
@@ -196,6 +215,8 @@ public class ScheduleDetailActivity extends BaseActivity {
     }
 
     private void showErrorState(String message) {
+        setButtonsEnabled(false);
+        progressView.setVisibility(View.GONE);
         cardContainer.setVisibility(View.GONE);
         actionsContainer.setVisibility(View.GONE);
         messageView.setVisibility(View.VISIBLE);
@@ -223,11 +244,12 @@ public class ScheduleDetailActivity extends BaseActivity {
     }
 
     private void performChangeStatus(String targetStatus) {
+        if (!confirmBtn.isEnabled() && !cancelBtn.isEnabled()) return;
         setButtonsEnabled(false);
         if (progressView != null) progressView.setVisibility(View.VISIBLE);
 
         DbExecutor.execute(() -> {
-            ActionResult result = repository.setStatus(scheduleId, targetStatus);
+            ActionResult result = changeStatusSafely(targetStatus);
             runOnUiThread(() -> {
                 if (isFinishing() || isDestroyed()) return;
                 setButtonsEnabled(true);
@@ -247,21 +269,28 @@ public class ScheduleDetailActivity extends BaseActivity {
     }
 
     private void performDelete() {
+        if (!deleteBtn.isEnabled()) return;
         setButtonsEnabled(false);
         if (progressView != null) progressView.setVisibility(View.VISIBLE);
 
         DbExecutor.execute(() -> {
-            ActionResult result = repository.deleteMine(scheduleId);
+            ActionResult result;
+            try {
+                result = repository.deleteMine(scheduleId);
+            } catch (RuntimeException error) {
+                result = ActionResult.error(ActionResult.DB_ERROR, getString(R.string.schedule_load_error));
+            }
+            ActionResult checked = result;
             runOnUiThread(() -> {
                 if (isFinishing() || isDestroyed()) return;
                 setButtonsEnabled(true);
                 if (progressView != null) progressView.setVisibility(View.GONE);
 
-                if (result.ok) {
+                if (checked.ok) {
                     Toast.makeText(this, R.string.schedule_detail_delete_success, Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    Toast.makeText(this, result.message, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, checked.message, Toast.LENGTH_LONG).show();
                 }
             });
         });
@@ -272,5 +301,13 @@ public class ScheduleDetailActivity extends BaseActivity {
         confirmBtn.setEnabled(enabled);
         cancelBtn.setEnabled(enabled);
         deleteBtn.setEnabled(enabled);
+    }
+
+    private ActionResult changeStatusSafely(String status) {
+        try {
+            return repository.setStatus(scheduleId, status);
+        } catch (RuntimeException error) {
+            return ActionResult.error(ActionResult.DB_ERROR, getString(R.string.schedule_load_error));
+        }
     }
 }

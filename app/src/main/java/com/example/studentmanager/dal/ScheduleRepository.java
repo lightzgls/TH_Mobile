@@ -196,7 +196,7 @@ public class ScheduleRepository {
 
             db.setTransactionSuccessful();
         } catch (SQLiteException e) {
-            return ActionResult.error(ActionResult.DB_ERROR, "Lỗi cơ sở dữ liệu: " + e.getMessage());
+            return ActionResult.error(ActionResult.DB_ERROR, "Không thể cập nhật lịch học. Vui lòng thử lại.");
         } finally {
             db.endTransaction();
         }
@@ -239,7 +239,7 @@ public class ScheduleRepository {
                 return ActionResult.error(ActionResult.NOT_FOUND, "Không tìm thấy lịch học cần xóa");
             }
         } catch (SQLiteException e) {
-            return ActionResult.error(ActionResult.DB_ERROR, "Lỗi cơ sở dữ liệu: " + e.getMessage());
+            return ActionResult.error(ActionResult.DB_ERROR, "Không thể xóa lịch học. Vui lòng thử lại.");
         }
 
         try {

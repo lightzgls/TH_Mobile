@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.example.studentmanager.R;
 import com.example.studentmanager.dal.DbContract;
 import com.example.studentmanager.dal.ScheduleRepository;
@@ -188,6 +189,11 @@ public class ScheduleListActivity extends BaseActivity {
     }
 
     private void applyFilter() {
+        if (selectedFromDateDb != null && selectedToDateDb != null
+                && selectedFromDateDb.compareTo(selectedToDateDb) > 0) {
+            Toast.makeText(this, R.string.schedule_invalid_range, Toast.LENGTH_LONG).show();
+            return;
+        }
         ScheduleFilter filter = new ScheduleFilter();
         String keyword = keywordInput.getText().toString().trim();
         filter.keyword = keyword.isEmpty() ? null : keyword;
@@ -223,7 +229,17 @@ public class ScheduleListActivity extends BaseActivity {
         if (progressBar != null) progressBar.setVisibility(View.VISIBLE);
 
         DbExecutor.execute(() -> {
-            List<ScheduleItem> list = repository.listMine(filter);
+            List<ScheduleItem> list;
+            try {
+                list = repository.listMine(filter);
+            } catch (RuntimeException error) {
+                runOnUiThread(() -> {
+                    if (isFinishing() || isDestroyed()) return;
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(this, R.string.schedule_load_error, Toast.LENGTH_LONG).show();
+                });
+                return;
+            }
             runOnUiThread(() -> {
                 if (isFinishing() || isDestroyed()) return;
                 if (progressBar != null) progressBar.setVisibility(View.GONE);
