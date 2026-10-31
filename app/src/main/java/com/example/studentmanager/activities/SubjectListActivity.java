@@ -31,10 +31,15 @@ public class SubjectListActivity extends BaseActivity {
     protected boolean isPicker() { return false; }
     protected int pageLayout() { return R.layout.activity_subject_list; }
 
+    // Bản debug có thể dùng database riêng để thử đúng các màn hình này.
+    protected SubjectRepository createRepository() { return new SubjectRepository(this); }
+    protected AuthGuard createAuthGuard() { return new AuthGuard(this); }
+    protected Class<?> formActivity() { return SubjectFormActivity.class; }
+
     @Override protected void onCreate(Bundle state) {
         super.onCreate(state);
         setPage(pageLayout());
-        repository = new SubjectRepository(this);
+        repository = createRepository();
         search = findViewById(R.id.subject_browser_search);
         message = findViewById(R.id.subject_browser_message);
         ((TextView) findViewById(R.id.subject_browser_title)).setText(
@@ -47,7 +52,7 @@ public class SubjectListActivity extends BaseActivity {
         });
         findViewById(R.id.subject_browser_add).setVisibility(isPicker() ? View.GONE : View.VISIBLE);
         findViewById(R.id.subject_browser_add).setOnClickListener(view ->
-                startActivity(new Intent(this, SubjectFormActivity.class)));
+                startActivity(new Intent(this, formActivity())));
         findViewById(R.id.subject_browser_find).setOnClickListener(view -> load());
         search.setOnEditorActionListener((view, action, event) -> {
             if (action == EditorInfo.IME_ACTION_SEARCH) { load(); return true; }
@@ -74,7 +79,7 @@ public class SubjectListActivity extends BaseActivity {
         findViewById(R.id.subject_browser_add).setEnabled(false);
         DbExecutor.execute(() -> {
             try {
-                AuthGuard guard = new AuthGuard(this);
+                AuthGuard guard = createAuthGuard();
                 boolean allowed = isPicker() ? guard.requireStudent() != null : guard.requireAdmin();
                 List<Subject> result = allowed ? repository.list(keyword) : new ArrayList<>();
                 runOnUiThread(() -> {
@@ -98,7 +103,7 @@ public class SubjectListActivity extends BaseActivity {
     protected void selectSubject(Subject selected) {
         DbExecutor.execute(() -> {
             try {
-                boolean allowed = new AuthGuard(this).requireAdmin();
+                boolean allowed = createAuthGuard().requireAdmin();
                 Subject subject = allowed ? repository.get(selected.id) : null;
                 runOnUiThread(() -> {
                     if (isFinishing() || isDestroyed()) return;
@@ -107,7 +112,7 @@ public class SubjectListActivity extends BaseActivity {
                             .setMessage(getString(R.string.subject_detail, subject.subjectCode,
                                     subject.subjectName, subject.credits, subject.description))
                             .setPositiveButton(R.string.subject_edit, (dialog, which) ->
-                                    startActivity(new Intent(this, SubjectFormActivity.class)
+                                    startActivity(new Intent(this, formActivity())
                                             .putExtra(AppConstants.EXTRA_SUBJECT_ID, subject.id)))
                             .setNeutralButton(R.string.subject_delete, (dialog, which) -> confirmDelete(subject))
                             .setNegativeButton(R.string.subject_close, null).show();
