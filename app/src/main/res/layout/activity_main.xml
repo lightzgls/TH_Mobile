@@ -11,10 +11,7 @@
             android:text="@string/main_description" android:textSize="16sp" android:paddingBottom="24dp" />
         <Button android:id="@+id/main_open_login" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:text="@string/main_start" />
-        <Button android:id="@+id/main_admin_preview" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:text="@string/main_admin_preview" />
-        <Button android:id="@+id/main_student_preview" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:text="@string/main_student_preview" />
+
         <TextView android:id="@+id/main_status" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:paddingTop="16dp"
             android:text="@string/main_database_loading" />
