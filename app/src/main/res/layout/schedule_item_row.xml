@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="14dp"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/schedule_row_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#1A237E"
+        android:paddingBottom="4dp" />
+
+    <TextView
+        android:id="@+id/schedule_row_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#37474F"
+        android:paddingBottom="2dp" />
+
+    <TextView
+        android:id="@+id/schedule_row_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#455A64"
+        android:paddingBottom="4dp" />
+
+    <TextView
+        android:id="@+id/schedule_row_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CFD8DC"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>
