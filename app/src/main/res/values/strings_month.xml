@@ -1,4 +1,22 @@
 <resources>
     <string name="month_calendar_title">Lịch tháng</string>
-    <string name="month_calendar_placeholder">Phụ trách: Sáng. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+    <string name="month_label">Tháng %1$d / %2$d</string>
+    <string name="month_previous">Tháng trước</string>
+    <string name="month_next">Tháng sau</string>
+    <string name="month_today">Hôm nay</string>
+    <string name="month_selected">Ngày chọn: %1$s</string>
+    <string name="month_day_count">%1$d\n%2$d lịch</string>
+    <string name="month_day_accessibility">%1$s, %2$d lịch học</string>
+    <string name="month_open_day">Xem lịch ngày / tuần</string>
+    <string name="month_book">Đặt lịch ngày đã chọn</string>
+    <string name="month_empty">Chưa có lịch học trong ngày này. Bạn có thể đặt lịch mới.</string>
+    <string name="month_loading">Đang tải lịch…</string>
+    <string name="month_error">Không thể tải lịch. Hãy mở lại màn hình hoặc chọn tháng để thử lại.</string>
+    <string name="month_student_required">Cần đăng nhập Student để xem lịch tháng.</string>
+    <string name="month_schedule_row">%1$s — %2$s\n%3$s–%4$s · %5$s\n%6$s</string>
+    <string name="month_pending">Chờ xác nhận</string>
+    <string name="month_confirmed">Đã xác nhận</string>
+    <string-array name="month_weekdays">
+        <item>T2</item><item>T3</item><item>T4</item><item>T5</item><item>T6</item><item>T7</item><item>CN</item>
+    </string-array>
 </resources>
