@@ -29,7 +29,7 @@
             android:layout_height="wrap_content" android:text="@string/booking_choose_time"
             android:textAllCaps="false" />
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="@string/booking_location_label" android:labelFor="@id/booking_form_location" />
+            android:text="@string/booking_location_label" />
         <EditText android:id="@+id/booking_form_location" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:minHeight="48dp"
             android:hint="@string/booking_location_hint" android:inputType="textCapSentences"
