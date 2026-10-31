@@ -1,4 +1,24 @@
 <resources>
-    <string name="booking_form_title">Đặt và sửa lịch học</string>
-    <string name="booking_form_placeholder">Phụ trách: Thu. Chức năng này sẽ được triển khai trên nhánh cá nhân.</string>
+    <string name="booking_create_title">Đặt lịch học</string>
+    <string name="booking_edit_title">Sửa lịch học</string>
+    <string name="booking_subject_label">Môn học</string>
+    <string name="booking_date_label">Ngày học</string>
+    <string name="booking_start_label">Giờ bắt đầu</string>
+    <string name="booking_end_label">Giờ kết thúc</string>
+    <string name="booking_location_label">Địa điểm</string>
+    <string name="booking_location_hint">Ví dụ: Phòng A101</string>
+    <string name="booking_choose_subject">Chọn môn học</string>
+    <string name="booking_choose_date">Chọn ngày học</string>
+    <string name="booking_choose_time">Chọn giờ</string>
+    <string name="booking_subject_value">%1$s — %2$s</string>
+    <string name="booking_save">Lưu lịch học</string>
+    <string name="booking_loading">Đang xử lý lịch học</string>
+    <string name="booking_created">Đã đặt lịch học.</string>
+    <string name="booking_updated">Đã cập nhật lịch học.</string>
+    <string name="booking_login_required">Vui lòng đăng nhập bằng tài khoản sinh viên.</string>
+    <string name="booking_schedule_missing">Không tìm thấy lịch học của bạn.</string>
+    <string name="booking_subject_missing">Môn học không còn tồn tại. Vui lòng chọn lại.</string>
+    <string name="booking_not_editable">Chỉ được sửa lịch chưa bắt đầu và chưa hủy.</string>
+    <string name="booking_load_error">Không thể tải dữ liệu. Vui lòng mở lại màn hình.</string>
+    <string name="booking_save_error">Không thể lưu lịch học. Vui lòng thử lại.</string>
 </resources>

@@ -4,13 +4,45 @@
     android:fillViewport="true">
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
         android:orientation="vertical" android:padding="24dp">
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="@string/booking_form_title" android:textSize="24sp" android:textStyle="bold"
+        <TextView android:id="@+id/booking_form_title"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/booking_create_title" android:textSize="24sp" android:textStyle="bold"
             android:paddingBottom="16dp" />
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="@string/booking_form_placeholder" android:textSize="16sp" android:paddingBottom="24dp" />
+            android:text="@string/booking_subject_label" android:labelFor="@id/booking_form_subject" />
+        <Button android:id="@+id/booking_form_subject" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/booking_choose_subject"
+            android:textAllCaps="false" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/booking_date_label" android:labelFor="@id/booking_form_date" />
+        <Button android:id="@+id/booking_form_date" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/booking_choose_date"
+            android:textAllCaps="false" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/booking_start_label" android:labelFor="@id/booking_form_start" />
+        <Button android:id="@+id/booking_form_start" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/booking_choose_time"
+            android:textAllCaps="false" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/booking_end_label" android:labelFor="@id/booking_form_end" />
+        <Button android:id="@+id/booking_form_end" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/booking_choose_time"
+            android:textAllCaps="false" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/booking_location_label" />
+        <EditText android:id="@+id/booking_form_location" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:minHeight="48dp"
+            android:hint="@string/booking_location_hint" android:inputType="textCapSentences"
+            android:importantForAutofill="no" android:maxLines="1" />
+        <TextView android:id="@+id/booking_form_error" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:textColor="#B3261E" android:accessibilityLiveRegion="polite" android:visibility="gone" />
+        <ProgressBar android:id="@+id/booking_form_progress" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/booking_loading" android:visibility="gone" />
+        <Button android:id="@+id/booking_form_save" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/booking_save" />
         <Button android:id="@+id/booking_form_back" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:text="@string/common_back" />
-
     </LinearLayout>
 </ScrollView>
