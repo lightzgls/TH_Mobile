@@ -5,9 +5,9 @@ Bộ mẫu có **1 Admin, 30 sinh viên, 30 môn và 3.670 lịch**, nằm trong
 ## Mở để test giao diện ngay
 
 1. Lấy main mới nhất, mở project trong Android Studio, chọn variant **debug**.
-2. Chọn cấu hình **Sang UI Demo**, chọn emulator/điện thoại và bấm **Run ▶**.
-3. Nếu cấu hình chưa xuất hiện, chạy **app** rồi mở icon **Sáng UI Demo** trong danh sách ứng dụng.
-4. Dùng các nút quản lý môn, chọn môn và lịch tháng. Bấm **Tạo lại dữ liệu demo** nếu đã cài bộ demo cũ hoặc muốn bắt đầu lại.
+2. Chọn cấu hình **app**, chọn emulator/điện thoại và bấm **Run ▶**.
+3. Đăng nhập admin / Admin@123 hoặc sv01 / Student@123 để dùng dữ liệu sample chung. Nếu đã lưu phiên, bấm Đăng xuất để thử lại login.
+4. Chỉ khi cần thử riêng giao diện Sáng mới chọn cấu hình **Sang UI Demo**. Demo không có icon launcher riêng; nút **Tạo lại dữ liệu demo** chỉ reset database demo.
 
 Demo dùng các Activity của Sáng và cùng bộ seed như database chung. Dữ liệu được lưu riêng trong `sang_visual_demo.db`; nút tạo lại chỉ tác động đến database demo này. Các luồng chính vẫn dùng `study_schedule.db` và kiểm tra phiên qua AuthGuard.
 
@@ -20,7 +20,7 @@ Demo dùng các Activity của Sáng và cùng bộ seed như database chung. D�
 | sv02 | Student@123 | STUDENT | 2 |
 | sv03 đến sv30 | Student@123 | STUDENT | 3 đến 30 |
 
-Đây là tài khoản giả cho bài tập. Password trong SQLite là hash PBKDF2, không phải mật khẩu rõ. Đăng nhập thật cần phần auth của An được ghép vào main; menu demo hoạt động độc lập với tiến độ auth.
+Đây là tài khoản giả cho bài tập. Password trong SQLite là hash PBKDF2, không phải mật khẩu rõ. Đăng nhập thật dùng phần auth của An đã ghép vào main; menu demo chỉ dùng để thử riêng giao diện.
 
 28 sinh viên bổ sung có họ tên tiếng Việt ngắn/dài, mã SV003–SV030, email sv03@example.com đến sv30@example.com và số điện thoại giả để thử tìm kiếm/cuộn danh sách. Tất cả dữ liệu chỉ phục vụ bài tập.
 

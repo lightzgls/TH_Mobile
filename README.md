@@ -23,9 +23,11 @@
 ## Test nhanh với dữ liệu mẫu
 
 1. Lấy `main` mới nhất, mở Android Studio và chọn build variant **debug**.
-2. Chọn cấu hình **Sang UI Demo**, chọn emulator rồi bấm **Run ▶**.
-3. Thử quản lý môn, chọn môn và lịch tháng ngay với dữ liệu mẫu. Nếu chưa thấy cấu hình Run, chạy **app** rồi mở icon **Sáng UI Demo** trên thiết bị.
-4. Bấm **Tạo lại dữ liệu demo** để lấy bộ mẫu mới nếu đã cài demo từ trước.
+2. Chọn cấu hình **app**, chọn emulator rồi bấm **Run ▶**. App chỉ có một launcher: MainActivity.
+3. Chưa có phiên hợp lệ sẽ vào đăng nhập. Dùng admin / Admin@123 hoặc sv01 / Student@123 để thử luồng thật với bộ sample chung.
+4. Nếu đang có phiên, app vào đúng Home; bấm **Đăng xuất** để thử lại màn hình login. Cài APK mới không xóa dữ liệu cũ.
+
+Cấu hình **Sang UI Demo** chỉ dùng khi chủ động thử riêng giao diện của Sáng, không đi qua login và không phải lối mở app chính. Demo không còn icon launcher riêng; vẫn có thể chạy bằng cấu hình Run riêng và dùng database demo riêng.
 
 Bộ mẫu có **1 Admin, 30 Student, 30 môn và 3.670 lịch**, gồm lịch hôm nay, ngày mai, đã qua, sát giờ và ở tháng trước/sau. GIT101 chưa có lịch để thử xóa; MOB101 và DB101 có lịch để thử chặn xóa. Xem [bộ dữ liệu và cách thử cho cả nhóm](docs/SAMPLE_DATA.md).
 
